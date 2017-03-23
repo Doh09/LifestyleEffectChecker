@@ -22,8 +22,8 @@ namespace LifestyleEffectChecker.ViewModels
             Title = "Browse Journals";
             Items = new ObservableRangeCollection<Item>();
             Journals = new ObservableRangeCollection<Journal>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
             LoadJournalsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
@@ -42,9 +42,9 @@ namespace LifestyleEffectChecker.ViewModels
 
             try
             {
-                Journals.Clear();
-                var journals = await DataStore.GetItemsAsync(true);
-                Items.ReplaceRange(journals);
+                //Journals.Clear(); //TODO re-enable clear when journal list is displayed.
+                var journals = await journalRepository.ReadAll();//await DataStore.GetItemsAsync(true);
+                Journals = new ObservableRangeCollection<Journal>(journals);
             }
             catch (Exception ex)
             {

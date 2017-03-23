@@ -14,8 +14,10 @@ namespace LifestyleEffectChecker.Views
         public ItemsPage()
         {
             InitializeComponent();
-
-            BindingContext = viewModel = new ItemsViewModel();
+            viewModel = new ItemsViewModel();
+            BindingContext = viewModel;
+            ItemsListView.ItemsSource = viewModel.Journals;
+            ItemsListView.ItemsSource = viewModel.Journals;
         }
 
         async void OnJournalSelected(object sender, SelectedItemChangedEventArgs args)
@@ -39,8 +41,9 @@ namespace LifestyleEffectChecker.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            if (viewModel.Items.Count == 0) {
+                  viewModel.LoadJournalsCommand.Execute(null);
+            }
         }
     }
 }
