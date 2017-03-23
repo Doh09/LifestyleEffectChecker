@@ -20,32 +20,33 @@ namespace LifestyleEffectChecker.Repository
             _connection.CreateTable<Journal>();
         }
 
-        public Journal Create(Journal obj)
+        public async Task<Journal> Create(Journal obj)
         {
             _connection.Insert(obj);
-            return obj;
+            
+            return await Task.FromResult(obj);
         }
 
-        public Journal Read(int id)
+        public async Task<Journal> Read(int id)
         {
-            return _connection.Table<Journal>().FirstOrDefault(action => action.ID == id);
+            return await Task.FromResult(_connection.Table<Journal>().FirstOrDefault(journal => journal.ID == id));
         }
 
-        public IEnumerable<Journal> ReadAll()
+        public async Task<IEnumerable<Journal>> ReadAll()
         {
-            return (from t in _connection.Table<Journal>() select t).ToList();
+            return await Task.FromResult((from t in _connection.Table<Journal>() select t).ToList());
         }
 
-        public Journal Update(Journal obj)
+        public async Task<Journal> Update(Journal obj)
         {
             _connection.Update(obj);
-            return obj;
+            return await Task.FromResult(obj);
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             _connection.Delete<Journal>(id);
-            return Read(id) != null;
+            return await Task.FromResult(Read(id) != null);
         }
     }
 }

@@ -20,32 +20,32 @@ namespace LifestyleEffectChecker.Repository
             _connection.CreateTable<PartInformation>();
         }
 
-        public PartInformation Create(PartInformation obj)
+        public async Task<PartInformation> Create(PartInformation obj)
         {
             _connection.Insert(obj);
-            return obj;
+            return await Task.FromResult(obj);
         }
 
-        public PartInformation Read(int id)
+        public async Task<PartInformation> Read(int id)
         {
-            return _connection.Table<PartInformation>().FirstOrDefault(action => action.ID == id);
+            return await Task.FromResult(_connection.Table<PartInformation>().FirstOrDefault(action => action.ID == id));
         }
 
-        public IEnumerable<PartInformation> ReadAll()
+        public async Task<IEnumerable<PartInformation>> ReadAll()
         {
-            return (from t in _connection.Table<PartInformation>() select t).ToList();
+            return await Task.FromResult((from t in _connection.Table<PartInformation>() select t).ToList());
         }
 
-        public PartInformation Update(PartInformation obj)
+        public async Task<PartInformation> Update(PartInformation obj)
         {
             _connection.Update(obj);
-            return obj;
+            return await Task.FromResult(obj);
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             _connection.Delete<PartInformation>(id);
-            return Read(id) != null;
+            return await Task.FromResult(Read(id) != null);
         }
     }
 }

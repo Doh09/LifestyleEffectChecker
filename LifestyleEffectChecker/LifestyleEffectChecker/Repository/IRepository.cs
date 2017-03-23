@@ -8,15 +8,15 @@ namespace LifestyleEffectChecker.Repository
 {
     interface IRepository<T>
     {
-        T Create(T obj);
+        Task<T> Create(T obj);
 
-        T Read(int id);
+        Task<T> Read(int id);
 
-        IEnumerable<T> ReadAll();
+        Task<IEnumerable<T>> ReadAll();
 
-        T Update(T obj);
+        Task<T> Update(T obj);
 
-        bool Delete(int id);
+        Task<bool> Delete(int id);
     }
 
 }

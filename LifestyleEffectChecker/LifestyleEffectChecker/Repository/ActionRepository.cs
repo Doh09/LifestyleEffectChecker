@@ -20,32 +20,32 @@ namespace LifestyleEffectChecker.Repository
             _connection = DependencyService.Get<IDBConnection>().GetConnection();
             _connection.CreateTable<Action>();
         }
-        public Action Create(Action obj)
+        public async Task<Action> Create(Action obj)
         {
             _connection.Insert(obj);
-            return obj;
+            return await Task.FromResult(obj);
         }
 
-        public Action Read(int id)
+        public async Task<Action> Read(int id)
         {
-            return _connection.Table<Action>().FirstOrDefault(action => action.ID == id);
+            return await Task.FromResult(_connection.Table<Action>().FirstOrDefault(action => action.ID == id));
         }
 
-        public IEnumerable<Action> ReadAll()
+        public async Task<IEnumerable<Action>> ReadAll()
         {
-            return (from t in _connection.Table<Action>() select t).ToList();
+            return await Task.FromResult((from t in _connection.Table<Action>() select t).ToList());
         }
 
-        public Action Update(Action obj)
+        public async Task<Action> Update(Action obj)
         {
             _connection.Update(obj);
-            return obj;
+            return await Task.FromResult(obj);
         }
 
-        public bool Delete(int id)
+        public async Task<bool> Delete(int id)
         {
             _connection.Delete<Action>(id);
-            return Read(id) != null;
+            return await Task.FromResult(Read(id) != null);
         }
     }
 }
