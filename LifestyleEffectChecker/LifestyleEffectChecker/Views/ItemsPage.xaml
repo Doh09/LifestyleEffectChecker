@@ -10,23 +10,23 @@
   <ContentPage.Content>
     <StackLayout>
       <ListView x:Name="ItemsListView"
-				ItemsSource="{Binding Items}"
+				ItemsSource="{Binding Journals}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                RefreshCommand="{Binding LoadItemsCommand}"
+                RefreshCommand="{Binding LoadJournalsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
-				ItemSelected="OnItemSelected">
+				ItemSelected="OnJournalSelected">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>
               <StackLayout Padding="10">
-                <Label Text="{Binding Text}"
+                <Label Text="{Binding Name}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16"/>
-                <Label Text="{Binding Description}"
+                <Label Text="{Binding Name}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13"/>

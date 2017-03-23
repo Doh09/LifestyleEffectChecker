@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LifestyleEffectChecker.Models
 {
-    class Journal : AbstractBaseObject
+    public class Journal : AbstractBaseObject
     {
         public string Name { get; set; }
 

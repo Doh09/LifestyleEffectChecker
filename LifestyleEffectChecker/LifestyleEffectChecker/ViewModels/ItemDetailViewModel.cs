@@ -4,11 +4,13 @@ namespace LifestyleEffectChecker.ViewModels
 {
     public class ItemDetailViewModel : BaseViewModel
     {
+        
         public Item Item { get; set; }
-        public ItemDetailViewModel(Item item = null)
+        public Journal Journal { get; set; }
+        public ItemDetailViewModel(Journal journal = null)
         {
-            Title = item.Text;
-            Item = item;
+            Title = journal.Name;
+            Journal = journal;
         }
 
         int quantity = 1;
