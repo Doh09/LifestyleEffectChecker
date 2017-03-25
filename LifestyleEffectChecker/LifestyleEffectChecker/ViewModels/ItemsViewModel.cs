@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -14,6 +15,7 @@ namespace LifestyleEffectChecker.ViewModels
     {
         public ObservableRangeCollection<Item> Items { get; set; }
         public ObservableRangeCollection<Journal> Journals { get; set; }
+
         public Command LoadItemsCommand { get; set; }
         public Command LoadJournalsCommand { get; set; }
 
@@ -31,6 +33,7 @@ namespace LifestyleEffectChecker.ViewModels
                 Items.Add(_item);
                 await DataStore.AddItemAsync(_item);
             });
+
         }
 
         async Task ExecuteLoadJournalsCommand()
@@ -42,9 +45,9 @@ namespace LifestyleEffectChecker.ViewModels
 
             try
             {
-                //Journals.Clear(); //TODO re-enable clear when journal list is displayed.
                 var journals = await journalRepository.ReadAll();//await DataStore.GetItemsAsync(true);
                 Journals = new ObservableRangeCollection<Journal>(journals);
+
             }
             catch (Exception ex)
             {

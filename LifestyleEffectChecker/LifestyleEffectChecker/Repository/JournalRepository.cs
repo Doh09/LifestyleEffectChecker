@@ -28,10 +28,6 @@ namespace LifestyleEffectChecker.Repository
         {
             _connection = DependencyService.Get<IDBConnection>().GetConnection();
             _connection.CreateTable<Journal>();
-
-            Create(new Journal() {Name = "Adventure Journal", ID = 24, ActionParts = new List<Action>()});
-            Create(new Journal() { Name = "Food Journal", ID = 25, ActionParts = new List<Action>() });
-            Create(new Journal() { Name = "Excercise Journal", ID = 26, ActionParts = new List<Action>() });
         }
 
         public async Task<Journal> Create(Journal obj)
