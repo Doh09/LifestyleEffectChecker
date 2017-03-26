@@ -47,11 +47,13 @@
     <Compile Include="Models\ActionPart.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
     <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Journal.cs" />
     <Compile Include="Models\PartInformation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repository\ActionPartRepository.cs" />
     <Compile Include="Repository\ActionRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
+    <Compile Include="Repository\JournalRepository.cs" />
     <Compile Include="Repository\PartInformationRepository.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\MockDataStore.cs" />
