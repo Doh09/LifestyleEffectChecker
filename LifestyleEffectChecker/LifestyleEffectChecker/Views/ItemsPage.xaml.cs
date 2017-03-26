@@ -1,5 +1,8 @@
 ﻿using System;
-
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
+using LifestyleEffectChecker.Helpers;
 using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.ViewModels;
 
@@ -14,17 +17,30 @@ namespace LifestyleEffectChecker.Views
         public ItemsPage()
         {
             InitializeComponent();
-
-            BindingContext = viewModel = new ItemsViewModel();
+            viewModel = new ItemsViewModel();
+            
+            BindingContext = viewModel;
+            viewModel.Journals.CollectionChanged += ListenToJournalChanges;
+            viewModel.Journals.Add(new Journal() { Name = "No journals", ID = -1, ActionParts = new List<Models.Action>() }); //Display this "Journal" if initial loading of journals failed
+            
         }
 
-        async void OnItemSelected(object sender, SelectedItemChangedEventArgs args)
+        void ListenToJournalChanges(object sender, NotifyCollectionChangedEventArgs e)
         {
-            var item = args.SelectedItem as Item;
-            if (item == null)
+            ItemsListView.RefreshCommand.Execute(null);
+            ItemsListView.ItemsSource = null;
+            ItemsListView.ItemsSource = viewModel.Journals;
+
+        }
+
+        async void OnJournalSelected(object sender, SelectedItemChangedEventArgs args)
+        {
+            ItemsListView.ItemsSource = viewModel.Journals;
+            var journal = args.SelectedItem as Journal;
+            if (journal == null)
                 return;
 
-            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(item)));
+            await Navigation.PushAsync(new ItemDetailPage(new ItemDetailViewModel(journal)));
 
             // Manually deselect item
             ItemsListView.SelectedItem = null;
@@ -39,8 +55,9 @@ namespace LifestyleEffectChecker.Views
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0)
-                viewModel.LoadItemsCommand.Execute(null);
+            if (viewModel.Items.Count == 0) {
+                  viewModel.LoadJournalsCommand.Execute(null);
+            }
         }
     }
 }

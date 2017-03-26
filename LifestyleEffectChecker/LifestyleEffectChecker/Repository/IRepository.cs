@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace LifestyleEffectChecker.Repository
 {
-    interface IRepository<T>
+    public interface IRepository<T>
     {
         Task<T> Create(T obj);
 

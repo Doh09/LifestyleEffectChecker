@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -13,13 +14,18 @@ namespace LifestyleEffectChecker.ViewModels
     public class ItemsViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Item> Items { get; set; }
+        public ObservableRangeCollection<Journal> Journals { get; set; }
+
         public Command LoadItemsCommand { get; set; }
+        public Command LoadJournalsCommand { get; set; }
 
         public ItemsViewModel()
         {
-            Title = "Browse";
+            Title = "Browse Journals";
             Items = new ObservableRangeCollection<Item>();
-            LoadItemsCommand = new Command(async () => await ExecuteLoadItemsCommand());
+            Journals = new ObservableRangeCollection<Journal>();
+            LoadJournalsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
+            LoadItemsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
 
             MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
             {
@@ -27,6 +33,36 @@ namespace LifestyleEffectChecker.ViewModels
                 Items.Add(_item);
                 await DataStore.AddItemAsync(_item);
             });
+
+        }
+
+        async Task ExecuteLoadJournalsCommand()
+        {
+            if (IsBusy)
+                return;
+
+            IsBusy = true;
+
+            try
+            {
+                var journals = await journalRepository.ReadAll();//await DataStore.GetItemsAsync(true);
+                Journals = new ObservableRangeCollection<Journal>(journals);
+
+            }
+            catch (Exception ex)
+            {
+                Debug.WriteLine(ex);
+                MessagingCenter.Send(new MessagingCenterAlert
+                {
+                    Title = "Error",
+                    Message = "Unable to load journals.",
+                    Cancel = "OK"
+                }, "message");
+            }
+            finally
+            {
+                IsBusy = false;
+            }
         }
 
         async Task ExecuteLoadItemsCommand()

@@ -7,6 +7,7 @@ using LifestyleEffectChecker.Connection;
 using LifestyleEffectChecker.Models;
 using SQLite.Net;
 using Xamarin.Forms;
+using Action = LifestyleEffectChecker.Models.Action;
 
 namespace LifestyleEffectChecker.Repository
 {
@@ -14,7 +15,16 @@ namespace LifestyleEffectChecker.Repository
     {
         private readonly SQLiteConnection _connection;
 
-        public JournalRepository(SQLiteConnection connection)
+        private static JournalRepository instance;
+
+        public static JournalRepository GetInstance()
+        {
+            if (instance == null)
+                instance = new JournalRepository();
+            return instance;
+        }
+
+        private JournalRepository()
         {
             _connection = DependencyService.Get<IDBConnection>().GetConnection();
             _connection.CreateTable<Journal>();
@@ -34,7 +44,10 @@ namespace LifestyleEffectChecker.Repository
 
         public async Task<IEnumerable<Journal>> ReadAll()
         {
-            return await Task.FromResult((from t in _connection.Table<Journal>() select t).ToList());
+            var journals = (from t in _connection.Table<Journal>() select t).ToList();
+            var toReturn = await Task.FromResult(journals);
+            
+            return toReturn;
         }
 
         public async Task<Journal> Update(Journal obj)

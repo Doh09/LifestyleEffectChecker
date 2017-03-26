@@ -4,7 +4,7 @@
              x:Class="LifestyleEffectChecker.Views.ItemDetailPage"
              Title="{Binding Title}">
 	<StackLayout Spacing="20" Padding="15">
-		<Label Text="{Binding Item.Text}" FontSize="Medium"/>
-        <Label Text="{Binding Item.Description}" FontSize="Small"/>
+		<Label Text="{Binding Journal.Name}" FontSize="Medium"/>
+        <Label Text="{Binding Journal.Name}" FontSize="Small"/>
     </StackLayout>
 </ContentPage>

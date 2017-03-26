@@ -23,7 +23,7 @@ namespace LifestyleEffectChecker
                 {
                     new NavigationPage(new ItemsPage())
                     {
-                        Title = "Browse",
+                        Title = "Browse Journals",
                         Icon = Device.OnPlatform("tab_feed.png",null,null)
                     },
                     new NavigationPage(new AboutPage())

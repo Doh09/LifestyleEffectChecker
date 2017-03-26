@@ -1,5 +1,7 @@
-﻿using LifestyleEffectChecker.Helpers;
+﻿using LifestyleEffectChecker.Connection;
+using LifestyleEffectChecker.Helpers;
 using LifestyleEffectChecker.Models;
+using LifestyleEffectChecker.Repository;
 using LifestyleEffectChecker.Services;
 
 using Xamarin.Forms;
@@ -12,6 +14,7 @@ namespace LifestyleEffectChecker.ViewModels
         /// Get the azure service instance
         /// </summary>
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IRepository<Journal> journalRepository = JournalRepository.GetInstance();
 
         bool isBusy = false;
         public bool IsBusy
