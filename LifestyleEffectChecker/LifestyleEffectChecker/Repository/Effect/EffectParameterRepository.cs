@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using LifestyleEffectChecker.Connection;
-using LifestyleEffectChecker.Models;
+using LifestyleEffectChecker.Models.Effect;
 using SQLite.Net;
 using Xamarin.Forms;
 
-namespace LifestyleEffectChecker.Repository
+namespace LifestyleEffectChecker.Repository.Effect
 {
     class EffectParameterRepository : IRepository<EffectParameter>
     {

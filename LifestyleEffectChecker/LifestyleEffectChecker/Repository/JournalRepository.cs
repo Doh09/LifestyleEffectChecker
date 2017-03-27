@@ -7,7 +7,7 @@ using LifestyleEffectChecker.Connection;
 using LifestyleEffectChecker.Models;
 using SQLite.Net;
 using Xamarin.Forms;
-using Action = LifestyleEffectChecker.Models.Action;
+using Action = LifestyleEffectChecker.Models.Action.Action;
 
 namespace LifestyleEffectChecker.Repository
 {

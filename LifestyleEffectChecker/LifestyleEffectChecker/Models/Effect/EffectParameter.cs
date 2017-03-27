@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Plugin.Geolocator.Abstractions;
+﻿using Plugin.Geolocator.Abstractions;
 
-namespace LifestyleEffectChecker.Models
+namespace LifestyleEffectChecker.Models.Effect
 {
     public class EffectParameter : AbstractBaseObject
     {
@@ -27,14 +22,14 @@ namespace LifestyleEffectChecker.Models
                 case MeasuringMethod.Text:
                     return Text;
                 case MeasuringMethod.Decimal:
-                    return DecimalValue+"";
+                    return DecimalValue + "";
                 case MeasuringMethod.Number:
                     return NumberValue + "";
                 case MeasuringMethod.Picture:
                     return ImgPath;
                 case MeasuringMethod.Slider:
-                    return SliderValue+"";
-                    case MeasuringMethod.GPSLocation:
+                    return SliderValue + "";
+                case MeasuringMethod.GPSLocation:
                     return "GeoLocation - Latitude:" + GeoPosition.Latitude + " " + "Longitude:" +
                            GeoPosition.Longitude;
                 default:

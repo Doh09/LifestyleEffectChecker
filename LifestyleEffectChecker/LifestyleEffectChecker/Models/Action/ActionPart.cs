@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using SQLiteNetExtensions.Attributes;
 
-namespace LifestyleEffectChecker.Models
+namespace LifestyleEffectChecker.Models.Action
 {
     public class ActionPart : AbstractBaseObject
     {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using LifestyleEffectChecker.Models;
 
 using Xamarin.Forms;
-using Action = LifestyleEffectChecker.Models.Action;
+using Action = LifestyleEffectChecker.Models.Action.Action;
 
 namespace LifestyleEffectChecker.Views
 {

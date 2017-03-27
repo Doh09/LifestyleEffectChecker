@@ -1,7 +1,6 @@
-﻿using SQLite.Net.Attributes;
-using SQLiteNetExtensions.Attributes;
+﻿using SQLiteNetExtensions.Attributes;
 
-namespace LifestyleEffectChecker.Models
+namespace LifestyleEffectChecker.Models.Action
 {
     public class PartInformation : AbstractBaseObject
     {
