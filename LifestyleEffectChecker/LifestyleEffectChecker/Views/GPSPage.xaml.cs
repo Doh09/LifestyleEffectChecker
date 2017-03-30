@@ -12,13 +12,13 @@ using Xamarin.Forms.Xaml;
 namespace LifestyleEffectChecker.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class Page1Tab1 : ContentPage
+    public partial class GPSPage : ContentPage
     {
         ObservableCollection<string> _coordinates; //Bør nok være "Position" og ikke "string"
         bool _isListening = false;
         IGeolocator locator = CrossGeolocator.Current;
 
-        public Page1Tab1()
+        public GPSPage()
         {
             InitializeComponent();
 
@@ -60,7 +60,7 @@ namespace LifestyleEffectChecker.Views
 
         private async void BtnGetGPS_OnClicked(object sender, EventArgs e)
         {
-            locator.DesiredAccuracy = 10;
+            locator.DesiredAccuracy = 2;
 
             var position = await locator.GetPositionAsync(5000);
 
@@ -70,11 +70,41 @@ namespace LifestyleEffectChecker.Views
                 return;
             }
 
-            _coordinates.Clear();
-            object o = position;
-            _coordinates.Add(PositionAsString(position));
-            
+            Position fstPosition = new Position();
+            Position scndPosition = new Position();
+            if (_coordinates.Count == 0)
+            {
+            fstPosition = position; 
+            _coordinates.Add(PositionAsString(fstPosition));
+            }
+            else
+            { 
+                scndPosition = position;
+                _coordinates.Add(PositionAsString(scndPosition));
+                FindSurfaceDistanceBetweenPositions(fstPosition, scndPosition);
+            }
+
             Refresh();
+        }
+        public void FindSurfaceDistanceBetweenPositions(Position fstPosition, Position scndPosition)
+        {
+            var R = 6371e3;
+            var φ1 = (Math.PI / 180) * fstPosition.Latitude;
+            var φ2 = (Math.PI / 180) * scndPosition.Latitude;
+            var Δφ = (scndPosition.Latitude - fstPosition.Latitude) * (Math.PI / 180);
+            var Δλ = (scndPosition.Longitude - fstPosition.Longitude) * (Math.PI / 180);
+
+            var a = Math.Sin(Δφ / 2) * Math.Sin(Δφ / 2) +
+        Math.Cos(φ1) * Math.Cos(φ2) *
+        Math.Sin(Δλ / 2) * Math.Sin(Δλ / 2);
+
+            var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+            var d = R * c;
+
+            var correctDistance = R-d;
+            _coordinates.Clear();
+            _coordinates.Add(correctDistance + "");
         }
     }
 }

@@ -12,6 +12,6 @@ namespace LifestyleEffectChecker.Models
         public string Name { get; set; }
 
         [OneToMany]
-        public List<Action> ActionParts { get; set; } = new List<Action>();
+        public List<Action.Action> ActionParts { get; set; } = new List<Action.Action>();
     }
 }

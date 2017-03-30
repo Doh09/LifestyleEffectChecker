@@ -31,9 +31,14 @@ namespace LifestyleEffectChecker
                         Title = "About",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
-                    new NavigationPage(new Page1Tab1())
+                    new NavigationPage(new GPSPage())
                     {
-                        Title = "About",
+                        Title = "GPS",
+                        Icon = Device.OnPlatform("tab_about.png",null,null)
+                    },
+                    new NavigationPage(new GoogleMapsPage())
+                    {
+                        Title = "Google Maps",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
                 }
