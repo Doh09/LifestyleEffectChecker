@@ -1,5 +1,5 @@
 ﻿using LifestyleEffectChecker.ViewModels;
-using LifestyleEffectChecker.ViewModels.Action;
+using LifestyleEffectChecker.ViewModels.Detail.Action;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.DetailViews.Action

@@ -2,7 +2,7 @@
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using ItemsPage = LifestyleEffectChecker.Views.IndexViews.ItemsPage;
+using ItemsPage = LifestyleEffectChecker.Views.IndexViews.JournalsIndexPage;
 
 [assembly: XamlCompilation(XamlCompilationOptions.Compile)]
 namespace LifestyleEffectChecker

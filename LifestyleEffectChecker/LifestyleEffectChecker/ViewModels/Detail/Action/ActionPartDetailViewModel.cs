@@ -1,6 +1,6 @@
 ﻿using LifestyleEffectChecker.Models.Action;
 
-namespace LifestyleEffectChecker.ViewModels.Action
+namespace LifestyleEffectChecker.ViewModels.Detail.Action
 {
     public class ActionPartDetailViewModel : BaseViewModel
     {

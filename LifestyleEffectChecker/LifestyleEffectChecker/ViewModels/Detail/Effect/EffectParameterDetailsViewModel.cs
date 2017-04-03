@@ -1,6 +1,6 @@
 ﻿using LifestyleEffectChecker.Models.Effect;
 
-namespace LifestyleEffectChecker.ViewModels.Effect
+namespace LifestyleEffectChecker.ViewModels.Detail.Effect
 {
     public class EffectParameterViewModel : BaseViewModel
     {

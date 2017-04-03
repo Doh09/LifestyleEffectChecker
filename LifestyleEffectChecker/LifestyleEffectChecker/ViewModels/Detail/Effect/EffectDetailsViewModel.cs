@@ -1,4 +1,4 @@
-﻿namespace LifestyleEffectChecker.ViewModels.Effect
+﻿namespace LifestyleEffectChecker.ViewModels.Detail.Effect
 {
     public class EffectViewModel : BaseViewModel
     {

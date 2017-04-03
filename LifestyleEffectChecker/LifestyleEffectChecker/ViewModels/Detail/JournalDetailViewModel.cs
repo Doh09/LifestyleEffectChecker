@@ -1,13 +1,13 @@
 ﻿using LifestyleEffectChecker.Models;
 
-namespace LifestyleEffectChecker.ViewModels
+namespace LifestyleEffectChecker.ViewModels.Detail
 {
-    public class ItemDetailViewModel : BaseViewModel
+    public class JournalDetailViewModel : BaseViewModel
     {
         
         public Item Item { get; set; }
         public Journal Journal { get; set; }
-        public ItemDetailViewModel(Journal journal = null)
+        public JournalDetailViewModel(Journal journal = null)
         {
             if (journal != null)
             Title = journal.Name;

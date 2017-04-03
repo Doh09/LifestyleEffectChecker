@@ -62,14 +62,15 @@
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\MockDataStore.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\Action\ActionDetailViewModel.cs" />
-    <Compile Include="ViewModels\Effect\EffectParameterViewModel.cs" />
-    <Compile Include="ViewModels\Effect\EffectViewModel.cs" />
-    <Compile Include="ViewModels\Action\PartInformationDetailViewModel.cs" />
+    <Compile Include="ViewModels\Detail\Action\ActionDetailViewModel.cs" />
+    <Compile Include="ViewModels\Detail\Effect\EffectParameterDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Detail\Effect\EffectDetailsViewModel.cs" />
+    <Compile Include="ViewModels\Detail\Action\PartInformationDetailViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Action\ActionPartDetailViewModel.cs" />
-    <Compile Include="ViewModels\ItemDetailViewModel.cs" />
-    <Compile Include="ViewModels\ItemsViewModel.cs" />
+    <Compile Include="ViewModels\Detail\Action\ActionPartDetailViewModel.cs" />
+    <Compile Include="ViewModels\Detail\JournalDetailViewModel.cs" />
+    <Compile Include="ViewModels\Index\ActionsViewModel.cs" />
+    <Compile Include="ViewModels\Index\JournalsViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
@@ -106,11 +107,14 @@
     <Compile Include="Views\DetailViews\Action\ActionDetailPage.xaml.cs">
       <DependentUpon>ActionDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DetailViews\ItemDetailPage.xaml.cs">
-      <DependentUpon>ItemDetailPage.xaml</DependentUpon>
+    <Compile Include="Views\DetailViews\JournalDetailPage.xaml.cs">
+      <DependentUpon>JournalDetailPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IndexViews\ItemsPage.xaml.cs">
-      <DependentUpon>ItemsPage.xaml</DependentUpon>
+    <Compile Include="Views\IndexViews\Action\ActionsIndexPage.xaml.cs">
+      <DependentUpon>ActionsIndexPage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IndexViews\JournalsIndexPage.xaml.cs">
+      <DependentUpon>JournalsIndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\CreateEditViews\NewItemPage.xaml.cs">
       <DependentUpon>NewItemPage.xaml</DependentUpon>
@@ -128,11 +132,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\DetailViews\ItemDetailPage.xaml">
+    <EmbeddedResource Include="Views\DetailViews\JournalDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\IndexViews\ItemsPage.xaml">
+    <EmbeddedResource Include="Views\IndexViews\JournalsIndexPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -246,7 +250,6 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Views\IndexViews\Action\" />
     <Folder Include="Views\IndexViews\Effect\" />
   </ItemGroup>
   <ItemGroup>
@@ -287,6 +290,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DetailViews\Effect\EffectParameterDetailPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\IndexViews\Action\ActionsIndexPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

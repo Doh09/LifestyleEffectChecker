@@ -1,18 +1,14 @@
 ﻿using System;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Threading.Tasks;
-
 using LifestyleEffectChecker.Helpers;
 using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Views;
-
 using Xamarin.Forms;
 using NewItemPage = LifestyleEffectChecker.Views.CreateEditViews.NewItemPage;
 
-namespace LifestyleEffectChecker.ViewModels
+namespace LifestyleEffectChecker.ViewModels.Index
 {
-    public class ItemsViewModel : BaseViewModel
+    public class JournalsViewModel : BaseViewModel
     {
         public ObservableRangeCollection<Item> Items { get; set; }
         public ObservableRangeCollection<Journal> Journals { get; set; }
@@ -20,7 +16,7 @@ namespace LifestyleEffectChecker.ViewModels
         public Command LoadItemsCommand { get; set; }
         public Command LoadJournalsCommand { get; set; }
 
-        public ItemsViewModel()
+        public JournalsViewModel()
         {
             Title = "Browse Journals";
             Items = new ObservableRangeCollection<Item>();

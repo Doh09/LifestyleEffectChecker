@@ -1,4 +1,4 @@
-﻿using LifestyleEffectChecker.ViewModels.Effect;
+﻿using LifestyleEffectChecker.ViewModels.Detail.Effect;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.DetailViews.Effect

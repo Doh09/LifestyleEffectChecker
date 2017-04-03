@@ -1,19 +1,20 @@
 ﻿using LifestyleEffectChecker.ViewModels;
+using LifestyleEffectChecker.ViewModels.Detail;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.DetailViews
 {
-    public partial class ItemDetailPage : ContentPage
+    public partial class JournalDetailPage : ContentPage
     {
-        ItemDetailViewModel viewModel;
+        JournalDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-        public ItemDetailPage()
+        public JournalDetailPage()
         {
             InitializeComponent();
         }
 
-        public ItemDetailPage(ItemDetailViewModel viewModel)
+        public JournalDetailPage(JournalDetailViewModel viewModel)
         {
             InitializeComponent();
 
