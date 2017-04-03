@@ -1,8 +1,6 @@
-﻿using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
-using LifestyleEffectChecker.Models.Effect;
+﻿using LifestyleEffectChecker.Models.Effect;
 
-namespace LifestyleEffectChecker.ViewModels
+namespace LifestyleEffectChecker.ViewModels.Effect
 {
     public class EffectParameterViewModel : BaseViewModel
     {

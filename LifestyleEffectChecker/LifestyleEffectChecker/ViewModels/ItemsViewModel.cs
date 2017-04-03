@@ -8,7 +8,7 @@ using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Views;
 
 using Xamarin.Forms;
-using NewItemPage = LifestyleEffectChecker.Views.CRUDViews.NewItemPage;
+using NewItemPage = LifestyleEffectChecker.Views.CreateEditViews.NewItemPage;
 
 namespace LifestyleEffectChecker.ViewModels
 {

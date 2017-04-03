@@ -1,14 +1,10 @@
-﻿using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
-using LifestyleEffectChecker.Models.Effect;
-
-namespace LifestyleEffectChecker.ViewModels
+﻿namespace LifestyleEffectChecker.ViewModels.Effect
 {
     public class EffectViewModel : BaseViewModel
     {
         
-        public Effect Effect { get; set; }
-        public EffectViewModel(Effect effect = null)
+        public Models.Effect.Effect Effect { get; set; }
+        public EffectViewModel(Models.Effect.Effect effect = null)
         {
             if (effect != null)
             Title = effect.Name;

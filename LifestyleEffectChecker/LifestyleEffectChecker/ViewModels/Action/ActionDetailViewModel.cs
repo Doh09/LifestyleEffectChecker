@@ -1,13 +1,10 @@
-﻿using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
-
-namespace LifestyleEffectChecker.ViewModels
+﻿namespace LifestyleEffectChecker.ViewModels.Action
 {
     public class ActionDetailViewModel : BaseViewModel
     {
         
-        public Action Action { get; set; }
-        public ActionDetailViewModel(Action action = null)
+        public Models.Action.Action Action { get; set; }
+        public ActionDetailViewModel(Models.Action.Action action = null)
         {
             if (action != null)
                 Title = action.Name;

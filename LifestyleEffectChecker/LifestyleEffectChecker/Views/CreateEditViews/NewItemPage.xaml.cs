@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using LifestyleEffectChecker.Models;
 using Xamarin.Forms;
-using Action = LifestyleEffectChecker.Models.Action.Action;
 
-namespace LifestyleEffectChecker.Views.CRUDViews
+namespace LifestyleEffectChecker.Views.CreateEditViews
 {
     public partial class NewItemPage : ContentPage
     {
+        public bool Edit { get; set; }
         public Item Item { get; set; }
         public Journal Journal { get; set; }
 
@@ -24,7 +24,7 @@ namespace LifestyleEffectChecker.Views.CRUDViews
             {
                 ID = -1,
                 Name = "Journal name",
-                ActionParts = new List<Action>()
+                ActionParts = new List<Models.Action.Action>()
             };
 
             

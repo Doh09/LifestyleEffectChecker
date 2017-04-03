@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.Specialized;
 using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.ViewModels;
+using LifestyleEffectChecker.Views.CreateEditViews;
 using Xamarin.Forms;
 using Action = LifestyleEffectChecker.Models.Action.Action;
 
@@ -44,7 +45,7 @@ namespace LifestyleEffectChecker.Views.IndexViews
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new CRUDViews.NewItemPage());
+            await Navigation.PushAsync(new NewItemPage());
         }
 
         protected override void OnAppearing()
