@@ -88,7 +88,7 @@ namespace LifestyleEffectChecker.Views
         }
         public void FindSurfaceDistanceBetweenPositions(Position fstPosition, Position scndPosition)
         {
-            var R = 6371e3;
+            var R = 6371000;
             var φ1 = (Math.PI / 180) * fstPosition.Latitude;
             var φ2 = (Math.PI / 180) * scndPosition.Latitude;
             var Δφ = (scndPosition.Latitude - fstPosition.Latitude) * (Math.PI / 180);
@@ -102,9 +102,9 @@ namespace LifestyleEffectChecker.Views
 
             var d = R * c;
 
-            var correctDistance = R-d;
+            //var correctDistance = R-d;
             _coordinates.Clear();
-            _coordinates.Add(correctDistance + "");
+            _coordinates.Add(d + "");
         }
     }
 }

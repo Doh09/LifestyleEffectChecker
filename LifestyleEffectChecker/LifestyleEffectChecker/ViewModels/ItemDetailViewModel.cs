@@ -9,7 +9,12 @@ namespace LifestyleEffectChecker.ViewModels
         public Journal Journal { get; set; }
         public ItemDetailViewModel(Journal journal = null)
         {
+            if (journal != null)
             Title = journal.Name;
+            else
+            {
+                Title = "No journal";
+            }
             Journal = journal;
         }
 

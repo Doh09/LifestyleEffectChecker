@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Google.Apis.Services;
 
 
 namespace LifestyleEffectChecker.Views
@@ -16,6 +17,7 @@ namespace LifestyleEffectChecker.Views
         public GoogleMapsPage()
         {
             InitializeComponent();
+            //Google.Apis.Services.
         }
     }
 }

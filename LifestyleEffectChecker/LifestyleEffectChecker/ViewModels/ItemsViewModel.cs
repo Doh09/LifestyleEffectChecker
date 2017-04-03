@@ -8,6 +8,7 @@ using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Views;
 
 using Xamarin.Forms;
+using NewItemPage = LifestyleEffectChecker.Views.CRUDViews.NewItemPage;
 
 namespace LifestyleEffectChecker.ViewModels
 {
@@ -46,6 +47,7 @@ namespace LifestyleEffectChecker.ViewModels
             try
             {
                 var journals = await journalRepository.ReadAll();//await DataStore.GetItemsAsync(true);
+                
                 Journals = new ObservableRangeCollection<Journal>(journals);
 
             }
