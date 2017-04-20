@@ -118,8 +118,8 @@
     <Compile Include="Views\IndexViews\JournalsIndexPage.xaml.cs">
       <DependentUpon>JournalsIndexPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateEditViews\NewItemPage.xaml.cs">
-      <DependentUpon>NewItemPage.xaml</DependentUpon>
+    <Compile Include="Views\CreateEditViews\NewJournalPage.xaml.cs">
+      <DependentUpon>NewJournalPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GPSPage.xaml.cs">
       <DependentUpon>GPSPage.xaml</DependentUpon>
@@ -142,7 +142,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
-    <EmbeddedResource Include="Views\CreateEditViews\NewItemPage.xaml">
+    <EmbeddedResource Include="Views\CreateEditViews\NewJournalPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

@@ -5,13 +5,13 @@ using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.CreateEditViews
 {
-    public partial class NewItemPage : ContentPage
+    public partial class NewJournalPage : ContentPage
     {
         public bool Edit { get; set; }
         public Item Item { get; set; }
         public Journal Journal { get; set; }
 
-        public NewItemPage()
+        public NewJournalPage()
         {
             InitializeComponent();
 
@@ -27,15 +27,13 @@ namespace LifestyleEffectChecker.Views.CreateEditViews
                 Actions = new List<Models.Action.Action>()
             };
 
-            
-
             BindingContext = this;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
 
-            MessagingCenter.Send(this, "AddItem", Item);
+            MessagingCenter.Send(this, "AddJournal", Journal);
             await Navigation.PopToRootAsync();
         }
     }

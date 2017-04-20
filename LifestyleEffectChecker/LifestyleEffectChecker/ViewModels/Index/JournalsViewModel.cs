@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 using LifestyleEffectChecker.Helpers;
 using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Repository;
+using LifestyleEffectChecker.Views.CreateEditViews;
 using Xamarin.Forms;
-using NewItemPage = LifestyleEffectChecker.Views.CreateEditViews.NewItemPage;
 
 namespace LifestyleEffectChecker.ViewModels.Index
 {
@@ -27,11 +27,11 @@ namespace LifestyleEffectChecker.ViewModels.Index
             LoadJournalsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
             LoadItemsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
             
-        MessagingCenter.Subscribe<NewItemPage, Item>(this, "AddItem", async (obj, item) =>
+        MessagingCenter.Subscribe<NewJournalPage, Journal>(this, "AddJournal", async (obj, journal) =>
             {
-                var _item = item as Item;
-                Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
+                var _journal = journal as Journal;
+                await journalRepository.Create(_journal);
+                Journals.Add(_journal);
             });
 
         }

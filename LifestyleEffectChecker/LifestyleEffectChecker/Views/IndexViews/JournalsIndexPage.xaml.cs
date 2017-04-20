@@ -27,6 +27,7 @@ namespace LifestyleEffectChecker.Views.IndexViews
 
         void ListenToJournalChanges(object sender, NotifyCollectionChangedEventArgs e)
         {
+            //viewModel.LoadJournalsCommand.Execute(null);
             JournalsListView.RefreshCommand.Execute(null);
             JournalsListView.ItemsSource = null;
             JournalsListView.ItemsSource = viewModel.Journals;
@@ -47,7 +48,7 @@ namespace LifestyleEffectChecker.Views.IndexViews
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new NewJournalPage());
         }
 
         protected override void OnAppearing()

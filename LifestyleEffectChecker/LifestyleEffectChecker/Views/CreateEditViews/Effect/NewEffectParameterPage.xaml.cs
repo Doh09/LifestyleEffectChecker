@@ -1,4 +1,5 @@
 ﻿using System;
+using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Models.Effect;
 using Xamarin.Forms;
 

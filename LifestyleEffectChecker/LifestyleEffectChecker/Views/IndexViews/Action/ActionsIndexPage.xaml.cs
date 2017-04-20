@@ -46,7 +46,7 @@ namespace LifestyleEffectChecker.Views.IndexViews.Action
 
         async void AddItem_Clicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new NewItemPage());
+            await Navigation.PushAsync(new NewJournalPage());
         }
 
         protected override void OnAppearing()
