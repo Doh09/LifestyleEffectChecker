@@ -2,10 +2,10 @@
 
 namespace LifestyleEffectChecker.Models.Action
 {
-    public class PartInformation : AbstractBaseObject
+    public class PartInformation : Parameter
     {
         [ForeignKey(typeof(ActionPart))]
         public int parentID { get; set; }
-        public string Name { get; set; }
+
     }
 }
