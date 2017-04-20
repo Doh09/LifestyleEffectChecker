@@ -6,7 +6,7 @@ namespace LifestyleEffectChecker.Models.Action
     public class ActionPart : AbstractBaseObject
     {
         [ForeignKey(typeof(Action))]
-        public int parentID { get; set; }
+        public int parentID { get; set; } = -1;
 
         public string Name { get; set; }
 

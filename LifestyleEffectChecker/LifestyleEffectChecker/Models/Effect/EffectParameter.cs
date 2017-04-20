@@ -10,9 +10,9 @@ namespace LifestyleEffectChecker.Models.Effect
 
         private string Text { get; set; }
         private string ImgPath { get; set; }
-        private double DecimalValue { get; set; }
-        private double SliderValue { get; set; }
-        private int NumberValue { get; set; }
+        private double DecimalValue { get; set; } = -1;
+        private double SliderValue { get; set; } = -1;
+        private int NumberValue { get; set; } = -1;
         private Position GeoPosition { get; set; }
 
         public string GetValue()
