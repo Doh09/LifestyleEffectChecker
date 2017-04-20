@@ -22,7 +22,7 @@ namespace LifestyleEffectChecker.Views.IndexViews
             
             BindingContext = viewModel;
             viewModel.Journals.CollectionChanged += ListenToJournalChanges;
-            viewModel.Journals.Add(new Journal() { Name = "No journals", ID = -1, ActionParts = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
+            viewModel.Journals.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
         }
 
         void ListenToJournalChanges(object sender, NotifyCollectionChangedEventArgs e)

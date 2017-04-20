@@ -5,34 +5,35 @@ using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.ViewModels.Detail;
 using LifestyleEffectChecker.ViewModels.Index;
 using LifestyleEffectChecker.Views.CreateEditViews;
+using Action = LifestyleEffectChecker.Models.Action.Action;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.IndexViews.Action
 {
     public partial class ActionsIndexPage : ContentPage
     {
-        JournalsViewModel viewModel;
+        ActionsViewModel viewModel;
 
-        public ActionsIndexPage()
+        public ActionsIndexPage(Journal parentJournal)
         {
             InitializeComponent();
-            viewModel = new JournalsViewModel();
+            viewModel = new ActionsViewModel(parentJournal);
             
             BindingContext = viewModel;
-            viewModel.Journals.CollectionChanged += ListenToJournalChanges;
-            viewModel.Journals.Add(new Journal() { Name = "No journals", ID = -1, ActionParts = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
+            viewModel.Actions.CollectionChanged += ListenToJournalChanges;
+            viewModel.Actions.Add(new Models.Action.Action() { Name = "No actions", ID = -1, ActionParts = new List<Models.Action.ActionPart>() }); //Display this "Journal" if initial loading of journals failed
         }
 
         void ListenToJournalChanges(object sender, NotifyCollectionChangedEventArgs e)
         {
             ActionsListView.RefreshCommand.Execute(null);
             ActionsListView.ItemsSource = null;
-            ActionsListView.ItemsSource = viewModel.Journals;
+            ActionsListView.ItemsSource = viewModel.Actions;
         }
 
         async void OnJournalSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            ActionsListView.ItemsSource = viewModel.Journals;
+            ActionsListView.ItemsSource = viewModel.Actions;
             var journal = args.SelectedItem as Journal;
             if (journal == null)
                 return;
@@ -52,7 +53,7 @@ namespace LifestyleEffectChecker.Views.IndexViews.Action
         {
             base.OnAppearing();
 
-            if (viewModel.Items.Count == 0) {
+            if (viewModel.Actions.Count == 0) {
                   viewModel.LoadJournalsCommand.Execute(null);
             }
         }

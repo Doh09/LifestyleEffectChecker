@@ -31,11 +31,11 @@ namespace LifestyleEffectChecker.Repository
             MakeMockJournals();
         }
 
-        private void MakeMockJournals()
+        private async void MakeMockJournals()
         {
-            Create(new Journal() { Name = "Adventure Journal", ActionParts = new List<Models.Action.Action>() });
-            Create(new Journal() { Name = "Food Journal", ActionParts = new List<Models.Action.Action>() });
-            Create(new Journal() { Name = "Excercise Journal", ActionParts = new List<Models.Action.Action>() });
+            await Create(new Journal() { Name = "Adventure Journal", Actions = new List<Models.Action.Action>() });
+            await Create(new Journal() { Name = "Food Journal", Actions = new List<Models.Action.Action>() });
+            await Create(new Journal() { Name = "Excercise Journal", Actions = new List<Models.Action.Action>() });
         }
 
         public async Task<Journal> Create(Journal obj)

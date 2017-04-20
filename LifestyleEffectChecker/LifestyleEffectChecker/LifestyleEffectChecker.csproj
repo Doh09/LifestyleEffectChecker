@@ -59,6 +59,7 @@
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\JournalRepository.cs" />
     <Compile Include="Repository\Action\PartInformationRepository.cs" />
+    <Compile Include="Repository\RepositoryFacade.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\MockDataStore.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />

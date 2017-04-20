@@ -12,7 +12,16 @@ namespace LifestyleEffectChecker.Repository.Effect
     {
         private readonly SQLiteConnection _connection;
 
-        public EffectRepository()
+        private static EffectRepository instance;
+
+        public static EffectRepository GetInstance()
+        {
+            if (instance == null)
+                instance = new EffectRepository();
+            return instance;
+        }
+
+        private EffectRepository()
         {
             _connection = DependencyService.Get<IDBConnection>().GetConnection();
             _connection.CreateTable<Models.Effect.Effect>();

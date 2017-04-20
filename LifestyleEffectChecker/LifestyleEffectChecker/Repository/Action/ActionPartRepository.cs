@@ -12,7 +12,16 @@ namespace LifestyleEffectChecker.Repository.Action
     {
         private readonly SQLiteConnection _connection;
 
-        public ActionPartRepository(SQLiteConnection connection)
+        private static ActionPartRepository instance;
+
+        public static ActionPartRepository GetInstance()
+        {
+            if (instance == null)
+                instance = new ActionPartRepository();
+            return instance;
+        }
+
+        private ActionPartRepository()
         {
             _connection = DependencyService.Get<IDBConnection>().GetConnection();
             _connection.CreateTable<ActionPart>();

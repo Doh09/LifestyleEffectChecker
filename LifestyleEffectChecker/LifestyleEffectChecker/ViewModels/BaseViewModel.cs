@@ -14,7 +14,6 @@ namespace LifestyleEffectChecker.ViewModels
         /// Get the azure service instance
         /// </summary>
         public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
-        public IRepository<Journal> journalRepository = JournalRepository.GetInstance();
 
         bool isBusy = false;
         public bool IsBusy

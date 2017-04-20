@@ -12,7 +12,16 @@ namespace LifestyleEffectChecker.Repository.Effect
     {
         private readonly SQLiteConnection _connection;
 
-        public EffectParameterRepository()
+        private static EffectParameterRepository instance;
+
+        public static EffectParameterRepository GetInstance()
+        {
+            if (instance == null)
+                instance = new EffectParameterRepository();
+            return instance;
+        }
+
+        private EffectParameterRepository()
         {
             _connection = DependencyService.Get<IDBConnection>().GetConnection();
             _connection.CreateTable<EffectParameter>();

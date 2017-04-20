@@ -24,7 +24,7 @@ namespace LifestyleEffectChecker.Views.CreateEditViews
             {
                 ID = -1,
                 Name = "Journal name",
-                ActionParts = new List<Models.Action.Action>()
+                Actions = new List<Models.Action.Action>()
             };
 
             
