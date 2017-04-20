@@ -6,12 +6,16 @@
              Title="TabbedPage">
   <!--Pages can be added as references or inline-->
   <views:AboutPage/>
-  <ContentPage Title="Tab 2">
-    <StackLayout>
-      <Label Text="Green"  HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5" />
-      <BoxView Color="Green" VerticalOptions="FillAndExpand" />
-    </StackLayout>
-  </ContentPage>
+  <ContentPage Title="GPS">
+        <StackLayout>
+            <Label Text="This is a Tabbed, you can tap on the Tabs to go to the other pages. You can specify an icon that will show up on iOS and Android with the Icon property of each page." Margin="5" />
+            <Label Text="Red" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5" />
+            <Button x:Name="btnGPSListening" Clicked="BtnGPSListening_OnClicked" Text="Start listening"></Button>
+            <Button x:Name="btnGetGPS" Text="Get GPS" Clicked="BtnGetGPS_OnClicked"></Button>
+            <ListView x:Name="lstCoordinates"></ListView>
+            <BoxView Color="Red" VerticalOptions="FillAndExpand" />
+        </StackLayout>
+    </ContentPage>
   <ContentPage Title="Tab 3">
     <StackLayout>
       <Label Text="Blue" HorizontalTextAlignment="Center" HorizontalOptions="FillAndExpand" Margin="5"  />
