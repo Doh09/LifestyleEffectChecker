@@ -11,6 +11,6 @@ namespace LifestyleEffectChecker.Models
     public class AbstractBaseObject
     {
         [PrimaryKey, AutoIncrement]
-        public int ID { get; set; }
+        public int ID { get; set; } = -1;
     }
 }
