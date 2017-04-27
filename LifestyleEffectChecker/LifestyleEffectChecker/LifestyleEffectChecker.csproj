@@ -91,6 +91,9 @@
     <Compile Include="Views\CreateEditViews\Action\NewActionPage.xaml.cs">
       <DependentUpon>NewActionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DeleteViews\JournalDeletePage.xaml.cs">
+      <DependentUpon>JournalDeletePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DetailViews\Effect\EffectParameterDetailPage.xaml.cs">
       <DependentUpon>EffectParameterDetailPage.xaml</DependentUpon>
     </Compile>
@@ -298,6 +301,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\IndexViews\Action\ActionsIndexPage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeleteViews\JournalDeletePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

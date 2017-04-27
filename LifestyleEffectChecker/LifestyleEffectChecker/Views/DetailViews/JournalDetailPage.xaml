@@ -3,7 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="LifestyleEffectChecker.Views.DetailViews.JournalDetailPage"
              Title="{Binding Title}">
-	<StackLayout Spacing="20" Padding="15">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Edit" Clicked="EditJournal_OnClicked" />
+        <ToolbarItem Text="Delete" Clicked="DeleteJournal_OnClicked" />
+    </ContentPage.ToolbarItems>
+    <StackLayout Spacing="20" Padding="15">
 		<Label Text="{Binding Journal.Name}" FontSize="Medium"/>
         <Label Text="{Binding Journal.Name}" FontSize="Small"/>
     </StackLayout>

@@ -21,7 +21,7 @@ namespace LifestyleEffectChecker.Views.IndexViews
             viewModel = new JournalsViewModel();
             
             BindingContext = viewModel;
-            viewModel.Journals.CollectionChanged += ListenToJournalChanges;
+            //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
             viewModel.Journals.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
         }
 
@@ -56,7 +56,10 @@ namespace LifestyleEffectChecker.Views.IndexViews
             base.OnAppearing();
 
             if (viewModel.Items.Count == 0) {
-                  viewModel.LoadJournalsCommand.Execute(null);
+                {
+                    viewModel.LoadJournalsCommand.Execute(null);
+                    ListenToJournalChanges(null, null);
+                }
             }
         }
     }

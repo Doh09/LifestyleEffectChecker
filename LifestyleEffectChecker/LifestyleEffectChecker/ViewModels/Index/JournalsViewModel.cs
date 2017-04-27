@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
 using LifestyleEffectChecker.Helpers;
 using LifestyleEffectChecker.Models;
@@ -26,12 +28,30 @@ namespace LifestyleEffectChecker.ViewModels.Index
             Journals = new ObservableRangeCollection<Journal>();
             LoadJournalsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
             LoadItemsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
-            
-        MessagingCenter.Subscribe<NewJournalPage, Journal>(this, "AddJournal", async (obj, journal) =>
+
+            MessagingCenter.Subscribe<NewJournalPage, Journal>(this, "AddJournal", async (obj, journal) =>
+                {
+                //It gets here when you click save in the item page.
+                await journalRepository.Create(journal);
+                    Journals.Add(journal);
+                    await ExecuteLoadJournalsCommand();
+                });
+
+            MessagingCenter.Subscribe<NewJournalPage, Journal>(this, "EditJournal", async (obj, journal) =>
             {
-                var _journal = journal as Journal;
-                await journalRepository.Create(_journal);
-                Journals.Add(_journal);
+                //It gets here when you click save in the item page.
+                await journalRepository.Update(journal);
+                //var toEdit = Journals.FirstOrDefault(x => x.ID == journal.ID);
+
+                await ExecuteLoadJournalsCommand();
+            });
+
+            MessagingCenter.Subscribe<NewJournalPage, Journal>(this, "DeleteJournal", async (obj, journal) =>
+            {
+                //It gets here when you click save in the item page.
+                await journalRepository.Delete(journal.ID);
+
+                await ExecuteLoadJournalsCommand();
             });
 
         }
@@ -46,9 +66,8 @@ namespace LifestyleEffectChecker.ViewModels.Index
             try
             {
                 var journals = await journalRepository.ReadAll();//await DataStore.GetItemsAsync(true);
-                
-                Journals = new ObservableRangeCollection<Journal>(journals);
 
+                Journals = new ObservableRangeCollection<Journal>(journals);
             }
             catch (Exception ex)
             {
