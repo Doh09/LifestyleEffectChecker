@@ -7,6 +7,7 @@ using LifestyleEffectChecker.Helpers;
 using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Repository;
 using LifestyleEffectChecker.Views.CreateEditViews;
+using LifestyleEffectChecker.Views.DetailViews;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.ViewModels.Index
@@ -46,7 +47,7 @@ namespace LifestyleEffectChecker.ViewModels.Index
                 await ExecuteLoadJournalsCommand();
             });
 
-            MessagingCenter.Subscribe<NewJournalPage, Journal>(this, "DeleteJournal", async (obj, journal) =>
+            MessagingCenter.Subscribe<JournalDeletePage, Journal>(this, "DeleteJournal", async (obj, journal) =>
             {
                 //It gets here when you click save in the item page.
                 await journalRepository.Delete(journal.ID);

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.ViewModels;
 using LifestyleEffectChecker.ViewModels.Detail;
@@ -24,17 +25,14 @@ namespace LifestyleEffectChecker.Views.DetailViews
             BindingContext = this.viewModel = viewModel;
         }
 
-        private async void EditJournal_OnClicked(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new NewJournalPage(true, viewModel.Journal));
-        }
 
         private async void ConfirmDeletion_OnClicked(object sender, EventArgs e)
         {
             if (DeletionConfirmationEntry.Text.Equals(viewModel.Journal.Name))
             {
                 //Delete journal
-                var answeredYes = await DisplayAlert("Confirmation", "Are you sure you want to delete the journal?", "Yes", "No");
+                var answeredYes = await DisplayAlert("Confirmation", "Are you sure you want to delete the journal?",
+                    "Yes", "No");
                 if (answeredYes)
                 {
                     MessagingCenter.Send(this, "DeleteJournal", viewModel.Journal);
@@ -44,7 +42,38 @@ namespace LifestyleEffectChecker.Views.DetailViews
             }
             else
             {
-                DisplayAlert("Error", "Name written does not match journal name", "OK");
+                MatchingNames.Text = "ERROR - names don't match";
+                MatchingNames.TextColor = Color.Red;
+                //Write error message? DisplayAlert seems to cause a bug if used, maybe use Toast? DisplayAlert seems to interfere with answeredYes, but test, am not sure.
+            }
+        }
+
+        private void DeletionConfirmationEntry_OnPropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (viewModel == null)
+            {
+                //no viewmodel.
+                MatchingNames.Text = "ERROR - no journal found to delete - CODE 1";
+                MatchingNames.TextColor = Color.Red;
+                return;
+            }
+            if (viewModel.Journal == null)
+            {
+                //No journal.
+                MatchingNames.Text = "ERROR - no journal found to delete - CODE 2";
+                MatchingNames.TextColor = Color.Red;
+                return;
+            }
+            bool isMatching = DeletionConfirmationEntry.Text.Equals(viewModel.Journal.Name);
+            if (isMatching)
+            {
+                MatchingNames.Text = "Matching";
+                MatchingNames.TextColor = Color.Lime;
+            }
+            else
+            {
+                MatchingNames.Text = "Not matching";
+                MatchingNames.TextColor = Color.Red;
             }
         }
     }
