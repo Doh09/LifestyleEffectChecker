@@ -29,15 +29,11 @@ namespace LifestyleEffectChecker.ViewModels.Index
             Actions = new ObservableRangeCollection<Action>();
             LoadActionsCommand = new Command(async () => await ExecuteLoadActionsCommand());
 
-            MessagingCenter.Subscribe<NewActionPage, Item>(this, "AddAction", async (obj, action) =>
+            MessagingCenter.Subscribe<NewActionPage, Action>(this, "AddAction", async (obj, action) =>
             {
-                //var _action = action as Action;
-                //Actions.Add(_action);
-                //await DataStore.AddItemAsync(_action);
-                //var _action = action as Item;
-                //Items.Add(_item);
-                //await DataStore.AddItemAsync(_action);
-
+                await actionRepository.Create(action);
+                Actions.Add(action);
+                await ExecuteLoadActionsCommand();
             });
 
         }

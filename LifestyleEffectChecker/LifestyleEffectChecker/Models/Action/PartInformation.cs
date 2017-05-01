@@ -6,6 +6,5 @@ namespace LifestyleEffectChecker.Models.Action
     {
         [ForeignKey(typeof(ActionPart))]
         public int parentID { get; set; }
-
     }
 }

@@ -14,5 +14,7 @@ namespace LifestyleEffectChecker.Models
         public int ID { get; set; } = -1;
 
         public string Name { get; set; }
+
+        public DateTime TimeStamp { get; set; }
     }
 }
