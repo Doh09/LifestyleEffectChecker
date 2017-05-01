@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Diagnostics;
+using System.Linq;
 using LifestyleEffectChecker.Helpers;
 using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Repository;
@@ -19,29 +20,29 @@ namespace LifestyleEffectChecker.ViewModels.Index
         public IRepository<Journal> journalRepository = RepositoryFacade.GetJournalRepository();
         public Journal ParentJournal { get; set; } = new Journal();
 
-        public Command LoadJournalsCommand { get; set; }
+        public Command LoadActionsCommand { get; set; }
 
         public ActionsViewModel(Journal journalWithActions)
         {
             ParentJournal = journalWithActions;
             Title = "Browse Actions";
             Actions = new ObservableRangeCollection<Action>();
-            LoadJournalsCommand = new Command(async () => await ExecuteLoadJournalsCommand());
+            LoadActionsCommand = new Command(async () => await ExecuteLoadActionsCommand());
 
-            MessagingCenter.Subscribe<NewActionPage, Item>(this, "AddItem", async (obj, item) =>
+            MessagingCenter.Subscribe<NewActionPage, Item>(this, "AddAction", async (obj, action) =>
             {
                 //var _action = action as Action;
                 //Actions.Add(_action);
                 //await DataStore.AddItemAsync(_action);
-                var _item = item as Item;
+                //var _action = action as Item;
                 //Items.Add(_item);
-                await DataStore.AddItemAsync(_item);
+                //await DataStore.AddItemAsync(_action);
 
             });
 
         }
 
-        async Task ExecuteLoadJournalsCommand()
+        async Task ExecuteLoadActionsCommand()
         {
             if (IsBusy)
                 return;
@@ -62,7 +63,7 @@ namespace LifestyleEffectChecker.ViewModels.Index
                 MessagingCenter.Send(new MessagingCenterAlert
                 {
                     Title = "Error",
-                    Message = "Unable to load journals.",
+                    Message = "Unable to load actions.",
                     Cancel = "OK"
                 }, "message");
             }
@@ -72,33 +73,5 @@ namespace LifestyleEffectChecker.ViewModels.Index
             }
         }
 
-        async Task ExecuteLoadItemsCommand()
-        {
-            if (IsBusy)
-                return;
-
-            IsBusy = true;
-
-            try
-            {
-                Actions.Clear();
-                var actions = await actionRepository.ReadAll();
-                Actions.ReplaceRange(actions);
-            }
-            catch (Exception ex)
-            {
-                Debug.WriteLine(ex);
-                MessagingCenter.Send(new MessagingCenterAlert
-                {
-                    Title = "Error",
-                    Message = "Unable to load items.",
-                    Cancel = "OK"
-                }, "message");
-            }
-            finally
-            {
-                IsBusy = false;
-            }
-        }
     }
 }

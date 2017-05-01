@@ -9,6 +9,7 @@ using LifestyleEffectChecker.Repository;
 using LifestyleEffectChecker.Views.CreateEditViews;
 using LifestyleEffectChecker.Views.DetailViews;
 using Xamarin.Forms;
+using JournalDeletePage = LifestyleEffectChecker.Views.DeleteViews.JournalDeletePage;
 
 namespace LifestyleEffectChecker.ViewModels.Index
 {

@@ -9,8 +9,6 @@ namespace LifestyleEffectChecker.Models
 {
     public class Journal : AbstractBaseObject
     {
-        public string Name { get; set; }
-
         [OneToMany]
         public List<Action.Action> Actions { get; set; } = new List<Action.Action>();
     }

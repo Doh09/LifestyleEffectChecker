@@ -3,19 +3,19 @@ using System.ComponentModel;
 using LifestyleEffectChecker.ViewModels.Detail;
 using Xamarin.Forms;
 
-namespace LifestyleEffectChecker.Views.DeleteViews
+namespace LifestyleEffectChecker.Views.DeleteViews.Action
 {
-    public partial class JournalDeletePage : ContentPage
-    {
+    public partial class ActionDeletePage : ContentPage
+    {//TODO this class is not implemented yet.
         private JournalDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
-        public JournalDeletePage()
+        public ActionDeletePage()
         {
             InitializeComponent();
         }
 
-        public JournalDeletePage(JournalDetailViewModel viewModel)
+        public ActionDeletePage(JournalDetailViewModel viewModel)
         {
             InitializeComponent();
 
@@ -73,5 +73,6 @@ namespace LifestyleEffectChecker.Views.DeleteViews
                 MatchingNames.TextColor = Color.Red;
             }
         }
+
     }
 }

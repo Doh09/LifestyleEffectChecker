@@ -31,7 +31,7 @@ namespace LifestyleEffectChecker.Views.IndexViews.Action
             ActionsListView.ItemsSource = viewModel.Actions;
         }
 
-        async void OnJournalSelected(object sender, SelectedItemChangedEventArgs args)
+        async void OnActionSelected(object sender, SelectedItemChangedEventArgs args)
         {
             ActionsListView.ItemsSource = viewModel.Actions;
             var journal = args.SelectedItem as Journal;
@@ -54,7 +54,7 @@ namespace LifestyleEffectChecker.Views.IndexViews.Action
             base.OnAppearing();
 
             if (viewModel.Actions.Count == 0) {
-                  viewModel.LoadJournalsCommand.Execute(null);
+                  viewModel.LoadActionsCommand.Execute(null);
             }
         }
     }

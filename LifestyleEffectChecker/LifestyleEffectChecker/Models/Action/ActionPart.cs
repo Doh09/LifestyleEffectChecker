@@ -8,8 +8,6 @@ namespace LifestyleEffectChecker.Models.Action
         [ForeignKey(typeof(Action))]
         public int parentID { get; set; } = -1;
 
-        public string Name { get; set; }
-
         [OneToMany]
         public List<PartInformation> PartInformations { get; set; } = new List<PartInformation>();
     }

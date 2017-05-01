@@ -10,14 +10,14 @@
   <ContentPage.Content>
     <StackLayout>
       <ListView x:Name="ActionsListView"
-				ItemsSource="{Binding Journals}"
+				ItemsSource="{Binding Actions}"
                 VerticalOptions="FillAndExpand"
                 HasUnevenRows="true"
-                RefreshCommand="{Binding LoadJournalsCommand}"
+                RefreshCommand="{Binding LoadActionsCommand}"
                 IsPullToRefreshEnabled="true"
                 IsRefreshing="{Binding IsBusy, Mode=OneWay}"
                 CachingStrategy="RecycleElement"
-				ItemSelected="OnJournalSelected">
+				ItemSelected="OnActionSelected">
         <ListView.ItemTemplate>
           <DataTemplate>
             <ViewCell>

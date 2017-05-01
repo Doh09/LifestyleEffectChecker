@@ -91,6 +91,21 @@
     <Compile Include="Views\CreateEditViews\Action\NewActionPage.xaml.cs">
       <DependentUpon>NewActionPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DeleteViews\Effect\EffectParameterDeletePage.xaml.cs">
+      <DependentUpon>EffectParameterDeletePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteViews\Effect\EffectDeletePage.xaml.cs">
+      <DependentUpon>EffectDeletePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteViews\Action\PartInformationDeletePage.xaml.cs">
+      <DependentUpon>PartInformationDeletePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteViews\Action\ActionPartDeletePage.xaml.cs">
+      <DependentUpon>ActionPartDeletePage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\DeleteViews\Action\ActionDeletePage.xaml.cs">
+      <DependentUpon>ActionDeletePage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\DeleteViews\JournalDeletePage.xaml.cs">
       <DependentUpon>JournalDeletePage.xaml</DependentUpon>
     </Compile>
@@ -307,6 +322,36 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DeleteViews\JournalDeletePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeleteViews\Action\ActionDeletePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeleteViews\Action\ActionPartDeletePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeleteViews\Action\PartInformationDeletePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeleteViews\Effect\EffectDeletePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DeleteViews\Effect\EffectParameterDeletePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

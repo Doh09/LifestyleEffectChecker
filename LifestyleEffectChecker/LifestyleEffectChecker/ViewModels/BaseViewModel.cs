@@ -13,7 +13,7 @@ namespace LifestyleEffectChecker.ViewModels
         /// <summary>
         /// Get the azure service instance
         /// </summary>
-        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>();
+        public IDataStore<Item> DataStore => DependencyService.Get<IDataStore<Item>>(); //Unused, was part of the scaffolding.
 
         bool isBusy = false;
         public bool IsBusy

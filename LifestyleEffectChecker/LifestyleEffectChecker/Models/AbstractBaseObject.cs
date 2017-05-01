@@ -12,5 +12,7 @@ namespace LifestyleEffectChecker.Models
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; } = -1;
+
+        public string Name { get; set; }
     }
 }

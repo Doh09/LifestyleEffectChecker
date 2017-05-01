@@ -30,7 +30,7 @@ namespace LifestyleEffectChecker.Views.DetailViews
 
         private async void DeleteJournal_OnClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new JournalDeletePage(new JournalDetailViewModel(viewModel.Journal)));
+            await Navigation.PushAsync(new DeleteViews.JournalDeletePage(new JournalDetailViewModel(viewModel.Journal)));
         }
     }
 }

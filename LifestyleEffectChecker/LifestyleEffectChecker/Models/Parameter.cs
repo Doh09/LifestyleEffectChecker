@@ -9,8 +9,6 @@ namespace LifestyleEffectChecker.Models
 {
     public class Parameter : AbstractBaseObject
     {
-        public string Name { get; set; }
-
         public MeasuringMethod MeasuringMethod { get; set; } = MeasuringMethod.Slider;
 
         private string Text { get; set; }
