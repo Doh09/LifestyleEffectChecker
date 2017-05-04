@@ -109,4 +109,4 @@ namespace LifestyleEffectChecker.Repository.ServiceGateway.Effect
         }
     }
 }
-}
+
