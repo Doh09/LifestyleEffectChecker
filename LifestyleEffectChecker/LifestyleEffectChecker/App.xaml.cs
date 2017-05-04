@@ -42,6 +42,11 @@ namespace LifestyleEffectChecker
                         Title = "About",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
+                    new NavigationPage(new SearchPage())
+                    {
+                        Title = "Search",
+                        Icon = Device.OnPlatform("tab_about.png",null,null)
+                    },
                 }
             };
 
