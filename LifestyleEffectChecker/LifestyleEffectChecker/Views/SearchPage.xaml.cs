@@ -44,7 +44,7 @@ namespace LifestyleEffectChecker.Views
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
 
-            List[3].Actions.Add(new Models.Action.Action() { ID = 1 ,Name = "FaceHits"});
+            //List[3].Actions.Add(new Models.Action.Action() { ID = 1 ,Name = "Mution"});
 
 
             #endregion
