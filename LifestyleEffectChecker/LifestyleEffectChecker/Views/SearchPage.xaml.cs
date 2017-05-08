@@ -20,7 +20,7 @@ namespace LifestyleEffectChecker.Views
         List<DataHolder> DHs = new List<DataHolder>();
         public enum searchTags
         {
-            All, Journal, Action, ActionPart, PartInformation, Error
+            All, Journal, Action, ActionPart, PartInformation, Effect, EffectParameter, Error
 
         }
         public searchTags CurrentSeatchTag { get; set; }
@@ -28,7 +28,8 @@ namespace LifestyleEffectChecker.Views
         {
             InitializeComponent();
             CurrentSeatchTag = searchTags.All;
-            ListView_ListOfTypes.ItemTapped += (sender, e) => {
+            ListView_ListOfTypes.ItemTapped += (sender, e) =>
+            {
                 string s = (string)e.Item;
                 CurrentSeatchTag = (searchTags)Enum.Parse(typeof(searchTags), s, true);
             };
@@ -40,12 +41,12 @@ namespace LifestyleEffectChecker.Views
             List = jvm.Journals.ToList();
             foreach (var item in List)
             {
-                DHs.Add(new DataHolder {Name = item.Name, Objert = item,Type = CheckType(item) });
+                DHs.Add(new DataHolder { Name = item.Name, Objert = item, Type = CheckType(item) });
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
 
-            List[3].JournalChildren.Add(new Models.Action.Action() { ID = 1 ,Name = "Mution"});
-
+            List[3].JournalChildren.Add(new Models.Action.Action() { ID = 1, Name = "MutionAction" });
+            List[3].JournalChildren.Add(new Models.Effect.Effect() { ID = 1, Name = "MutionEffect" });
 
             #endregion
             Refresh();
@@ -74,9 +75,12 @@ namespace LifestyleEffectChecker.Views
 
         private void Search_Button_OpenListOfTypes(object sender, EventArgs e)
         {
-            if (ListView_ListOfTypes.HeightRequest == 300) {
+            if (ListView_ListOfTypes.HeightRequest == 300)
+            {
                 ListView_ListOfTypes.HeightRequest = 0;
-            } else {
+            }
+            else
+            {
                 ListView_ListOfTypes.HeightRequest = 300;
             }
             if (ListView_ListOfTypes.ItemsSource == null)
@@ -102,7 +106,7 @@ namespace LifestyleEffectChecker.Views
             {
                 Search(journal);
             }
-            
+
             BindingContext = List;
             Refresh();
         }
@@ -127,7 +131,7 @@ namespace LifestyleEffectChecker.Views
                         }
                         if (DH.Type == searchTags.Action)
                         {
-                           Models.Action.Action J = (Models.Action.Action)O;
+                            Models.Action.Action J = (Models.Action.Action)O;
                             DH.Name = J.Name;
                         }
                         if (DH.Type == searchTags.ActionPart)
@@ -140,6 +144,16 @@ namespace LifestyleEffectChecker.Views
                             Models.Action.PartInformation J = (Models.Action.PartInformation)O;
                             DH.Name = J.Name;
                         }
+                        if (DH.Type == searchTags.Effect)
+                        {
+                            Models.Effect.Effect J = (Models.Effect.Effect)O;
+                            DH.Name = J.Name;
+                        }
+                        if (DH.Type == searchTags.EffectParameter)
+                        {
+                            Models.Effect.EffectParameter J = (Models.Effect.EffectParameter)O;
+                            DH.Name = J.Name;
+                        }
                         DHs.Add(DH);
                     }
                 }
@@ -149,37 +163,28 @@ namespace LifestyleEffectChecker.Views
         {
             if (O.GetType() == typeof(Journal))
             {
-               return searchTags.Journal;
+                return searchTags.Journal;
             }
-            else
-            {
-                // Console.WriteLine("not a jounal");
-            }
-            // same with the other values
             #region
             if (O.GetType() == typeof(Models.Action.Action))
             {
                 return searchTags.Action;
             }
-            else
-            {
-                // Console.WriteLine("not a Action");
-            }
             if (O.GetType() == typeof(Models.Action.ActionPart))
             {
                 return searchTags.ActionPart;
-            }
-            else
-            {
-                // Console.WriteLine("not a ActionPart");
             }
             if (O.GetType() == typeof(Models.Action.PartInformation))
             {
                 return searchTags.PartInformation;
             }
-            else
+            if (O.GetType() == typeof(Models.Effect.Effect))
             {
-                //  Console.WriteLine("not a PartInformation");
+                return searchTags.Effect;
+            }
+            if (O.GetType() == typeof(Models.Effect.EffectParameter))
+            {
+                return searchTags.EffectParameter;
             }
             #endregion
             return searchTags.Error;
@@ -188,7 +193,8 @@ namespace LifestyleEffectChecker.Views
         {
             List<Object> LO = new List<object>();
             #region
-            if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Journal) {
+            if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Journal)
+            {
                 if (journal.Name == Key || Key == "" + journal.TimeStamp || "" + journal.ID == Key || Key == "")
                 { LO.Add(journal); }
             }
@@ -199,34 +205,56 @@ namespace LifestyleEffectChecker.Views
                 {
                     var action = journalChild as Models.Action.Action;
                     #region
+
                     if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Action)
                     {
                         if (action.Name == Key || Key == "" + action.TimeStamp || "" + action.ID == Key || Key == "")
                         { LO.Add(action); }
                     }
-                    #endregion
-                
 
-                foreach (var actionParts in action.ActionParts)
+
+                    foreach (var actionParts in action.ActionParts)
                     {
                         #region
-                    if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.ActionPart)
-                    {
-                        if (actionParts.Name == Key || Key == "" + actionParts.TimeStamp || "" + actionParts.ID == Key || Key == "")
-                        { LO.Add(actionParts); }
-                    }
-                    #endregion
+                        if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.ActionPart)
+                        {
+                            if (actionParts.Name == Key || Key == "" + actionParts.TimeStamp || "" + actionParts.ID == Key || Key == "")
+                            { LO.Add(actionParts); }
+                        }
+                        #endregion
                         foreach (var partInformations in actionParts.PartInformations)
                         {
                             #region
-                        if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.PartInformation)
-                        {
-                            if (partInformations.Name == Key || Key == "" + partInformations.TimeStamp || "" + partInformations.ID == Key || Key == "")
-                            { LO.Add(partInformations); }
-                        }
-                        #endregion
+                            if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.PartInformation)
+                            {
+                                if (partInformations.Name == Key || Key == "" + partInformations.TimeStamp || "" + partInformations.ID == Key || Key == "")
+                                { LO.Add(partInformations); }
+                            }
+                            #endregion
                         }
                     }
+                    #endregion
+                }
+                else
+                {
+                    var Effect = journalChild as Models.Effect.Effect;
+                    #region
+                    if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Effect)
+                    {
+                        if (Effect.Name == Key || Key == "" + Effect.TimeStamp || "" + Effect.ID == Key || Key == "")
+                        { LO.Add(Effect); }
+                    }
+                    foreach (var effectParameter in Effect.EffectParameters)
+                    {
+
+                        if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.EffectParameter)
+                        {
+                            if (effectParameter.Name == Key || Key == "" + effectParameter.TimeStamp || "" + effectParameter.ID == Key || Key == "")
+                            { LO.Add(effectParameter); }
+                        }
+
+                    }
+                    #endregion
                 }
             }
             return LO;
