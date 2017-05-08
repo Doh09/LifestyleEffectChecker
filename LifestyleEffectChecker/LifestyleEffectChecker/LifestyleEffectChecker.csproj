@@ -151,6 +151,9 @@
     <Compile Include="Views\GPSPage.xaml.cs">
       <DependentUpon>GPSPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\SearchPage.xaml.cs">
+      <DependentUpon>SearchPage.xaml</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="App.xaml">
@@ -365,6 +368,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DeleteViews\Effect\EffectParameterDeletePage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\SearchPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
