@@ -12,15 +12,27 @@ using Xamarin.Forms.Xaml;
 
 namespace LifestyleEffectChecker.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
         JournalsViewModel jvm;
         List<Journal> List;
         List<DataHolder> DHs = new List<DataHolder>();
+        public enum searchTags
+        {
+            All, Journal, Action, ActionPart, PartInformation, Error
+
+        }
+        public searchTags CurrentSeatchTag { get; set; }
         public SearchPage()
         {
             InitializeComponent();
+            CurrentSeatchTag = searchTags.All;
+            ListView_ListOfTypes.ItemTapped += (sender, e) => {
+                string s = (string)e.Item;
+                CurrentSeatchTag = (searchTags)Enum.Parse(typeof(searchTags), s, true);
+            };
+
             #region
 
             jvm = new JournalsViewModel();
@@ -31,13 +43,16 @@ namespace LifestyleEffectChecker.Views
                 DHs.Add(new DataHolder {Name = item.Name, Objert = item,Type = CheckType(item) });
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
-            List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
+
+            List[3].Actions.Add(new Models.Action.Action() { ID = 1 ,Name = "FaceHits"});
+
+
             #endregion
             Refresh();
         }
         async void OnJournalSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            ListView.ItemsSource = List;
+            ListView_List_of_results.ItemsSource = List;
             var journal = args.SelectedItem as Journal;
             if (journal == null)
                 return;
@@ -45,21 +60,18 @@ namespace LifestyleEffectChecker.Views
             await Navigation.PushAsync(new DetailViews.JournalDetailPage(new ViewModels.Detail.JournalDetailViewModel(journal)));
 
             // Manually deselect item
-            ListView.SelectedItem = null;
+            ListView_List_of_results.SelectedItem = null;
         }
 
         private void Refresh()
         {
-            ListView.ItemsSource = null;
-            ListView.ItemsSource = DHs;
+            ListView_List_of_results.ItemsSource = null;
+            ListView_List_of_results.ItemsSource = DHs;
         }
 
         // Buttons
         #region
-        public enum searchTags
-        {
-            All, Journal, Action, ActionPart, PartInformation, Error
-        }
+
         private void Search_Button_OpenListOfTypes(object sender, EventArgs e)
         {
             if (ListView_ListOfTypes.HeightRequest == 300) {
@@ -116,8 +128,8 @@ namespace LifestyleEffectChecker.Views
                         }
                         if (DH.Type == searchTags.Action)
                         {
-                            Action J = (Action)O;
-                            DH.Name = "Why Do Actions Not have Names";//J.Name;
+                           Models.Action.Action J = (Models.Action.Action)O;
+                            DH.Name = J.Name;
                         }
                         if (DH.Type == searchTags.ActionPart)
                         {
@@ -173,23 +185,42 @@ namespace LifestyleEffectChecker.Views
             #endregion
             return searchTags.Error;
         }
-        public static List<Object> Find(string Key, Journal journal)
+        public List<Object> Find(string Key, Journal journal)
         {
             List<Object> LO = new List<object>();
-            if (journal.Name == Key) { LO.Add(journal); }
-            if (Key == "All") { LO.Add(journal); }
+            #region
+            if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Journal) {
+                if (journal.Name == Key || Key == "" + journal.TimeStamp || "" + journal.ID == Key || Key == "")
+                { LO.Add(journal); }
+            }
+            #endregion
             foreach (var action in journal.Actions)
             {
-                if (action.Name == Key) { LO.Add(action); }
-                if (Key == "All") { LO.Add(action); }
+                #region
+                if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Action)
+                {
+                    if (action.Name == Key || Key == "" + action.TimeStamp || "" + action.ID == Key || Key == "")
+                    { LO.Add(action); }
+                }
+                #endregion
                 foreach (var actionParts in action.ActionParts)
                 {
-                    if (actionParts.Name == Key) { LO.Add(actionParts); }
-                    if (Key == "All") { LO.Add(actionParts); }
+                    #region
+                    if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.ActionPart)
+                    {
+                        if (actionParts.Name == Key || Key == "" + actionParts.TimeStamp || "" + actionParts.ID == Key || Key == "")
+                        { LO.Add(actionParts); }
+                    }
+                    #endregion
                     foreach (var partInformations in actionParts.PartInformations)
                     {
-                        if (partInformations.Name == Key) { LO.Add(partInformations); }
-                        if (Key == "All") { LO.Add(partInformations); }
+                        #region
+                        if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.PartInformation)
+                        {
+                            if (partInformations.Name == Key || Key == "" + partInformations.TimeStamp || "" + partInformations.ID == Key || Key == "")
+                            { LO.Add(partInformations); }
+                        }
+                        #endregion
                     }
                 }
             }

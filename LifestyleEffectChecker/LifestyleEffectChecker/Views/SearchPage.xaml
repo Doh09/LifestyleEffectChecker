@@ -14,6 +14,6 @@
         </Grid>
         <ListView  x:Name="ListView_ListOfTypes" HeightRequest="1"></ListView>
         <Button Text="Search" Clicked="Search_Button_Clicked"></Button>
-        <ListView x:Name="ListView"></ListView>
+        <ListView x:Name="ListView_List_of_results"></ListView>
     </StackLayout>
 </ContentPage>
