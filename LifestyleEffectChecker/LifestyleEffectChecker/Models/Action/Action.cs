@@ -3,7 +3,7 @@ using SQLiteNetExtensions.Attributes;
 
 namespace LifestyleEffectChecker.Models.Action
 {
-    public class Action : AbstractBaseObject
+    public class Action : AbstractBaseObject, JournalChild
     {
         [ForeignKey(typeof(Journal))]
         public int parentID { get; set; } = -1;

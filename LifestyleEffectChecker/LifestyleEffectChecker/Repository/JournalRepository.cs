@@ -34,9 +34,9 @@ namespace LifestyleEffectChecker.Repository
         private async void MakeMockJournals()
         {
             if (ReadAll().Result.ToList().Count < 1) {  //if no journals for testing.
-            await Create(new Journal() { Name = "Adventure Journal", Actions = new List<Models.Action.Action>() });
-            await Create(new Journal() { Name = "Food Journal", Actions = new List<Models.Action.Action>() });
-            await Create(new Journal() { Name = "Excercise Journal", Actions = new List<Models.Action.Action>() });
+            await Create(new Journal() { Name = "Adventure Journal", JournalChildren = new List<JournalChild>() });
+            await Create(new Journal() { Name = "Food Journal", JournalChildren = new List<JournalChild>() });
+            await Create(new Journal() { Name = "Excercise Journal", JournalChildren = new List<JournalChild>() });
         }
         }
 

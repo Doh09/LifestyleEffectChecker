@@ -5,10 +5,9 @@ using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.ViewModels.Detail;
 using LifestyleEffectChecker.ViewModels.Index;
 using LifestyleEffectChecker.Views.CreateEditViews;
-using Action = LifestyleEffectChecker.Models.Action.Action;
 using Xamarin.Forms;
 
-namespace LifestyleEffectChecker.Views.IndexViews.Action
+namespace LifestyleEffectChecker.Views.IndexViews.ActionTypes
 {
     public partial class ActionsIndexPage : ContentPage
     {

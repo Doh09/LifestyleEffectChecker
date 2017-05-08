@@ -1,5 +1,5 @@
 ﻿using LifestyleEffectChecker.Views;
-
+using LifestyleEffectChecker.Views.IndexViews.ActionTypes;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using ItemsPage = LifestyleEffectChecker.Views.IndexViews.JournalsIndexPage;
@@ -27,6 +27,11 @@ namespace LifestyleEffectChecker
                         Title = "Browse Journals",
                         Icon = Device.OnPlatform("tab_feed.png",null,null)
                     },
+                    new NavigationPage(new ActionsIndexPage(null))
+                    {
+                        Title = "About",
+                        Icon = Device.OnPlatform("tab_about.png",null,null)
+                    },
                     new NavigationPage(new GPSPage())
                     {
                         Title = "GPS",
@@ -37,11 +42,7 @@ namespace LifestyleEffectChecker
                         Title = "Google Maps",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
-                    new NavigationPage(new AboutPage())
-                    {
-                        Title = "About",
-                        Icon = Device.OnPlatform("tab_about.png",null,null)
-                    },
+
                 }
             };
 

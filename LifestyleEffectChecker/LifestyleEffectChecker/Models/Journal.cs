@@ -10,6 +10,11 @@ namespace LifestyleEffectChecker.Models
     public class Journal : AbstractBaseObject
     {
         [OneToMany]
-        public List<Action.Action> Actions { get; set; } = new List<Action.Action>();
+        public List<JournalChild> JournalChildren { get; set; } = new List<JournalChild>();
+        //[OneToMany]
+        //public List<Action.Action> Actions { get; set; } = new List<Action.Action>();
+        //[OneToMany]
+        //public List<Effect.Effect> Effects { get; set; } = new List<Effect.Effect>();
+        //Journal should probably have a common list for actions and effects? Maybe they should both have an interface called "JournalChild"
     }
 }
