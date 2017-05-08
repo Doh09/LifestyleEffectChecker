@@ -44,7 +44,7 @@ namespace LifestyleEffectChecker.Views
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
 
-            //List[3].Actions.Add(new Models.Action.Action() { ID = 1 ,Name = "Mution"});
+            List[3].JournalChildren.Add(new Models.Action.Action() { ID = 1 ,Name = "Mution"});
 
 
             #endregion
@@ -97,7 +97,6 @@ namespace LifestyleEffectChecker.Views
         {
             // jvm.LoadJournalsCommand.Execute(null);
             List = jvm.Journals.ToList();
-            List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
             DHs.Clear();
             foreach (var journal in List)
             {
@@ -194,33 +193,39 @@ namespace LifestyleEffectChecker.Views
                 { LO.Add(journal); }
             }
             #endregion
-            foreach (var action in journal.Actions)
+            foreach (var journalChild in journal.JournalChildren)
             {
-                #region
-                if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Action)
+                if (journalChild.GetType() == typeof(Models.Action.Action))
                 {
-                    if (action.Name == Key || Key == "" + action.TimeStamp || "" + action.ID == Key || Key == "")
-                    { LO.Add(action); }
-                }
-                #endregion
-                foreach (var actionParts in action.ActionParts)
-                {
+                    var action = journalChild as Models.Action.Action;
                     #region
+                    if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Action)
+                    {
+                        if (action.Name == Key || Key == "" + action.TimeStamp || "" + action.ID == Key || Key == "")
+                        { LO.Add(action); }
+                    }
+                    #endregion
+                
+
+                foreach (var actionParts in action.ActionParts)
+                    {
+                        #region
                     if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.ActionPart)
                     {
                         if (actionParts.Name == Key || Key == "" + actionParts.TimeStamp || "" + actionParts.ID == Key || Key == "")
                         { LO.Add(actionParts); }
                     }
                     #endregion
-                    foreach (var partInformations in actionParts.PartInformations)
-                    {
-                        #region
+                        foreach (var partInformations in actionParts.PartInformations)
+                        {
+                            #region
                         if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.PartInformation)
                         {
                             if (partInformations.Name == Key || Key == "" + partInformations.TimeStamp || "" + partInformations.ID == Key || Key == "")
                             { LO.Add(partInformations); }
                         }
                         #endregion
+                        }
                     }
                 }
             }
