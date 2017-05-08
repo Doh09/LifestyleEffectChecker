@@ -43,10 +43,9 @@ namespace LifestyleEffectChecker.Views
             {
                 DHs.Add(new DataHolder { Name = item.Name, Objert = item, Type = CheckType(item) });
             }
-            //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
 
-            List[3].JournalChildren.Add(new Models.Action.Action() { ID = 1, Name = "MutionAction" });
-            List[3].JournalChildren.Add(new Models.Effect.Effect() { ID = 1, Name = "MutionEffect" });
+           // List[3].JournalChildren.Add(new Models.Action.Action() { ID = 1, Name = "MutionAction" });
+           // List[3].JournalChildren.Add(new Models.Effect.Effect() { ID = 1, Name = "MutionEffect" });
 
             #endregion
             Refresh();
