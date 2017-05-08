@@ -29,7 +29,7 @@ namespace LifestyleEffectChecker
                     },
                     new NavigationPage(new ActionsIndexPage(null))
                     {
-                        Title = "About",
+                        Title = "AnAboutPage",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
                     new NavigationPage(new GPSPage())
@@ -42,7 +42,16 @@ namespace LifestyleEffectChecker
                         Title = "Google Maps",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
                     },
-
+                    new NavigationPage(new AboutPage())
+                    {
+                        Title = "About",
+                        Icon = Device.OnPlatform("tab_about.png",null,null)
+                    },
+                    new NavigationPage(new SearchPage())
+                    {
+                        Title = "Search",
+                        Icon = Device.OnPlatform("tab_about.png",null,null)
+                    },
                 }
             };
 
