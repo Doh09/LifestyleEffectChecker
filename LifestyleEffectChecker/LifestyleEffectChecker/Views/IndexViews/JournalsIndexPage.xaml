@@ -27,7 +27,7 @@
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16"/>
                                 <Label Text="{Binding Name}"
-                       LineBreakMode="NoWrap"
+                       LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13"/>
                             </StackLayout>

@@ -15,6 +15,6 @@ namespace LifestyleEffectChecker.Models
 
         public string Name { get; set; }
 
-        public DateTime TimeStamp { get; set; }
+        public DateTime TimeStamp { get; set; } = DateTime.Now;
     }
 }

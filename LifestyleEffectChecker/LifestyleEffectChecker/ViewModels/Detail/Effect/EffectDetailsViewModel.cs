@@ -1,10 +1,10 @@
 ﻿namespace LifestyleEffectChecker.ViewModels.Detail.Effect
 {
-    public class EffectViewModel : BaseViewModel
+    public class EffectDetailViewModel : BaseViewModel
     {
         
         public Models.Effect.Effect Effect { get; set; }
-        public EffectViewModel(Models.Effect.Effect effect = null)
+        public EffectDetailViewModel(Models.Effect.Effect effect = null)
         {
             if (effect != null)
             Title = effect.Name;

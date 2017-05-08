@@ -28,7 +28,7 @@ namespace LifestyleEffectChecker.Views
             List = jvm.Journals.ToList();
             foreach (var item in List)
             {
-                DHs.Add(new DataHolder {Name = "tim",Objert = item,Type = CheckType(item) });
+                DHs.Add(new DataHolder { Name = "tim", Objert = item, Type = CheckType(item) });
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
             List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
@@ -60,13 +60,13 @@ namespace LifestyleEffectChecker.Views
 
         private void Search_Button_Clicked(object sender, EventArgs e)
         {
-           // jvm.LoadJournalsCommand.Execute(null);
+            // jvm.LoadJournalsCommand.Execute(null);
             List = jvm.Journals.ToList();
             List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
 
             foreach (var journal in List)
             {
-                List<Object>  ffv = Search(journal);
+                List<Object> ffv = Search(journal);
             }
             BindingContext = List;
             Refresh();
@@ -81,14 +81,14 @@ namespace LifestyleEffectChecker.Views
             // string s = Console.ReadLine();
             var KeyWord = EntryKeyWord.Text;
             List<Object> LO = Find(KeyWord, journal);
-            
+
             if (LO != null)
             {
                 foreach (var O in LO)
                 {
                     if (O != null)
                     {
-                        DHs.Add(new DataHolder {Name = "Bob",Objert = O,Type = CheckType(O) });
+                        DHs.Add(new DataHolder { Name = "Bob", Objert = O, Type = CheckType(O) });
                     }
                 }
             }
@@ -98,11 +98,11 @@ namespace LifestyleEffectChecker.Views
         {
             if (O.GetType() == typeof(Journal))
             {
-               return ("jounal");
+                return ("jounal");
             }
             else
             {
-               // Console.WriteLine("not a jounal");
+                // Console.WriteLine("not a jounal");
             }
             if (O.GetType() == typeof(Models.Action.Action))
             {

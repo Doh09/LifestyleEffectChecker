@@ -27,7 +27,7 @@ namespace LifestyleEffectChecker.Views.CreateEditViews
                 {
                     ID = -1,
                     Name = "Journal name",
-                    Actions = new List<Models.Action.Action>()
+                    JournalChildren = new List<JournalChild>()
                 };
 
             BindingContext = this;

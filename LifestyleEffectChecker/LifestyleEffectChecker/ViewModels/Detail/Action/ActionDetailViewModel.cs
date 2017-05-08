@@ -1,4 +1,6 @@
-﻿namespace LifestyleEffectChecker.ViewModels.Detail.Action
+﻿using LifestyleEffectChecker.Models;
+
+namespace LifestyleEffectChecker.ViewModels.Detail.Action
 {
     public class ActionDetailViewModel : BaseViewModel
     {

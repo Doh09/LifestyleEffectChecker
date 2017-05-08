@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Models
 {
@@ -12,5 +13,10 @@ namespace LifestyleEffectChecker.Models
     /// </summary>
     public interface JournalChild
     {
+        /// <summary>
+        /// Returns a stacklayout that is a brief data summary of this Journalchild.
+        /// </summary>
+        /// <returns></returns>
+        StackLayout GetStacklayoutRepresentation();
     }
 }

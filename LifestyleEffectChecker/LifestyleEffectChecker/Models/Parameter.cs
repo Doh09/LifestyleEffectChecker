@@ -11,6 +11,7 @@ namespace LifestyleEffectChecker.Models
     {
         public MeasuringMethod MeasuringMethod { get; set; } = MeasuringMethod.Slider;
 
+        public string ToolTip { get; set; }
         private string Text { get; set; }
         private string ImgPath { get; set; }
         private double DecimalValue { get; set; }

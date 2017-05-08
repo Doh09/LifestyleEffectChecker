@@ -3,6 +3,9 @@ using SQLiteNetExtensions.Attributes;
 
 namespace LifestyleEffectChecker.Models.Action
 {
+    /// <summary>
+    /// A subpart of the action you wish to track, e.g. "Apple" or "Running"
+    /// </summary>
     public class ActionPart : AbstractBaseObject
     {
         [ForeignKey(typeof(Action))]

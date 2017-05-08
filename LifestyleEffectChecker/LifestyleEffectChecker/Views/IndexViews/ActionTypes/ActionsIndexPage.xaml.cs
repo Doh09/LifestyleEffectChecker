@@ -19,20 +19,20 @@ namespace LifestyleEffectChecker.Views.IndexViews.ActionTypes
             viewModel = new ActionsViewModel(parentJournal);
             
             BindingContext = viewModel;
-            viewModel.Actions.CollectionChanged += ListenToJournalChanges;
-            viewModel.Actions.Add(new Models.Action.Action() { Name = "No actions", ID = -1, ActionParts = new List<Models.Action.ActionPart>() }); //Display this "Journal" if initial loading of journals failed
+            viewModel.JournalChildren.CollectionChanged += ListenToJournalChanges;
+            viewModel.JournalChildren.Add(new Models.Action.Action() { Name = "No actions", ID = -1, ActionParts = new List<Models.Action.ActionPart>() }); //Display this "Journal" if initial loading of journals failed
         }
 
         void ListenToJournalChanges(object sender, NotifyCollectionChangedEventArgs e)
         {
             ActionsListView.RefreshCommand.Execute(null);
             ActionsListView.ItemsSource = null;
-            ActionsListView.ItemsSource = viewModel.Actions;
+            ActionsListView.ItemsSource = viewModel.JournalChildren;
         }
 
         async void OnActionSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            ActionsListView.ItemsSource = viewModel.Actions;
+            ActionsListView.ItemsSource = viewModel.JournalChildren;
             var journal = args.SelectedItem as Journal;
             if (journal == null)
                 return;
@@ -52,7 +52,7 @@ namespace LifestyleEffectChecker.Views.IndexViews.ActionTypes
         {
             base.OnAppearing();
 
-            if (viewModel.Actions.Count == 0) {
+            if (viewModel.JournalChildren.Count == 0) {
                   viewModel.LoadActionsCommand.Execute(null);
             }
         }

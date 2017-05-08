@@ -15,7 +15,7 @@ namespace LifestyleEffectChecker.ViewModels.Index
 {
     public class ActionsViewModel : BaseViewModel
     {
-        public ObservableRangeCollection<Action> Actions { get; set; }
+        public ObservableRangeCollection<JournalChild> JournalChildren { get; set; }
         public IRepository<Action> actionRepository = RepositoryFacade.GetActionRepository();
         public IRepository<Journal> journalRepository = RepositoryFacade.GetJournalRepository();
         public Journal ParentJournal { get; set; } = new Journal();
@@ -26,13 +26,13 @@ namespace LifestyleEffectChecker.ViewModels.Index
         {
             ParentJournal = journalWithActions;
             Title = "Browse Actions";
-            Actions = new ObservableRangeCollection<Action>();
+            JournalChildren = new ObservableRangeCollection<JournalChild>();
             LoadActionsCommand = new Command(async () => await ExecuteLoadActionsCommand());
 
-            MessagingCenter.Subscribe<NewActionPage, Action>(this, "AddAction", async (obj, action) =>
+            MessagingCenter.Subscribe<NewActionPage, JournalChild>(this, "AddAction", async (obj, journalChild) =>
             {
-                await actionRepository.Create(action);
-                Actions.Add(action);
+                await actionRepository.Create(journalChild as Action);
+                JournalChildren.Add(journalChild);
                 await ExecuteLoadActionsCommand();
             });
 
@@ -48,9 +48,9 @@ namespace LifestyleEffectChecker.ViewModels.Index
             try
             {
                 ParentJournal = await journalRepository.Read(ParentJournal.ID);
-                var actions = ParentJournal.Actions;//await DataStore.GetItemsAsync(true);
+                var journalChildren = ParentJournal.JournalChildren;//await DataStore.GetItemsAsync(true);
 
-                Actions = new ObservableRangeCollection<Action>(actions);
+                JournalChildren = new ObservableRangeCollection<JournalChild>(journalChildren);
 
             }
             catch (Exception ex)

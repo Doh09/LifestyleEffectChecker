@@ -5,7 +5,7 @@ namespace LifestyleEffectChecker.Views.DetailViews.Effect
 {
     public partial class EffectDetailPage : ContentPage
     {
-        EffectViewModel viewModel;
+        EffectDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
         public EffectDetailPage()
@@ -13,7 +13,7 @@ namespace LifestyleEffectChecker.Views.DetailViews.Effect
             InitializeComponent();
         }
 
-        public EffectDetailPage(EffectViewModel viewModel)
+        public EffectDetailPage(EffectDetailViewModel viewModel)
         {
             InitializeComponent();
 
