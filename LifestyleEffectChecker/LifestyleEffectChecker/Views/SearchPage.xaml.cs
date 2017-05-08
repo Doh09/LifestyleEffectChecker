@@ -32,7 +32,6 @@ namespace LifestyleEffectChecker.Views
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
             List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
-            List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
             #endregion
             Refresh();
         }
@@ -99,11 +98,6 @@ namespace LifestyleEffectChecker.Views
         #endregion
         private void Search(Journal journal)
         {
-            //Console.WriteLine("what type do you want");
-            //String SearchType = Console.ReadLine();
-
-            // Console.WriteLine("Write a Text to search for");
-            // string s = Console.ReadLine();
             var KeyWord = EntryKeyWord.Text;
             List<Object> LO = Find(KeyWord, journal);
             

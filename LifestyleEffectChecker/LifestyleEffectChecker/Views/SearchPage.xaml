@@ -11,7 +11,6 @@
             </Grid.ColumnDefinitions>
             <Entry Grid.Column="0" x:Name="EntryKeyWord" Text="Search"></Entry>
             <Button Grid.Column="1"  Text="V" Clicked="Search_Button_OpenListOfTypes"></Button>
-            
         </Grid>
         <ListView  x:Name="ListView_ListOfTypes" HeightRequest="1"></ListView>
         <Button Text="Search" Clicked="Search_Button_Clicked"></Button>
