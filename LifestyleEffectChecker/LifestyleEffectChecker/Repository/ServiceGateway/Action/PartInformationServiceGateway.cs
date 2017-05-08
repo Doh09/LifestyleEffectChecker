@@ -29,7 +29,7 @@ namespace LifestyleEffectChecker.Repository.ServiceGateway.Action
             return null;
         }
 
-        public async Task<PartInformation> Read(int id)
+        public async Task<PartInformation> Read(int id, bool goOnline=false)
         {
             using (var client = new HttpClient())
             {
@@ -47,7 +47,7 @@ namespace LifestyleEffectChecker.Repository.ServiceGateway.Action
             }
         }
 
-        public async Task<IEnumerable<PartInformation>> ReadAll()
+        public async Task<IEnumerable<PartInformation>> ReadAll(bool goOnline = false)
         {
             using (var client = new HttpClient())
             {

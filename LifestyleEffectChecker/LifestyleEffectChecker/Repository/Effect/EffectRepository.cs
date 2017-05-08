@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using LifestyleEffectChecker.Connection;
 using LifestyleEffectChecker.Models.Effect;
+using LifestyleEffectChecker.Repository.ServiceGateway;
 using SQLite.Net;
 using Xamarin.Forms;
 
@@ -14,6 +15,9 @@ namespace LifestyleEffectChecker.Repository.Effect
 
         private static EffectRepository instance;
 
+        //Used to check for connection
+        private readonly ICheckNetwork _netWork = DependencyService.Get<ICheckNetwork>();
+        private readonly IRepository<Models.Effect.Effect> _serviceGateway = ServiceGatewayFacade.GetEffectServiceGateway();
         public static EffectRepository GetInstance()
         {
             if (instance == null)
@@ -28,29 +32,55 @@ namespace LifestyleEffectChecker.Repository.Effect
         }
 
         public async Task<Models.Effect.Effect> Create(Models.Effect.Effect obj)
-        {
+        {    //If there is online connection, send signal to the RestAPI
+            if (_netWork.IsOnline())
+            {
+                await _serviceGateway.Create(obj);
+            }
             _connection.Insert(obj);
             return await Task.FromResult(obj);
         }
 
-        public async Task<Models.Effect.Effect> Read(int id)
-        {
+        public async Task<Models.Effect.Effect> Read(int id, bool goOnline = false)
+        {    //If there is online connection, send signal to the RestAPI
+            if (goOnline)
+            {
+                if (_netWork.IsOnline())
+                {
+                    return await _serviceGateway.Read(id);
+                }
+            }
             return await Task.FromResult(_connection.Table<Models.Effect.Effect>().FirstOrDefault(action => action.ID == id));
         }
 
-        public async Task<IEnumerable<Models.Effect.Effect>> ReadAll()
-        {
+        public async Task<IEnumerable<Models.Effect.Effect>> ReadAll(bool goOnline = false)
+        {    //If there is online connection, send signal to the RestAPI
+            if (goOnline)
+            {
+                if (_netWork.IsOnline())
+                {
+                    return await _serviceGateway.ReadAll();
+                }
+            }
             return await Task.FromResult((from t in _connection.Table<Models.Effect.Effect>() select t).ToList());
         }
 
         public async Task<Models.Effect.Effect> Update(Models.Effect.Effect obj)
-        {
+        {//If there is online connection, send signal to the RestAPI
+            if (_netWork.IsOnline())
+            {
+                await _serviceGateway.Update(obj);
+            }
             _connection.Update(obj);
             return await Task.FromResult(obj);
         }
 
         public async Task<bool> Delete(int id)
-        {
+        {//If there is online connection, send signal to the RestAPI
+            if (_netWork.IsOnline())
+            {
+                await _serviceGateway.Delete(id);
+            }
             _connection.Delete<EffectParameter>(id);
             return await Task.FromResult(Read(id) != null);
         }

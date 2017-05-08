@@ -38,6 +38,7 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Connection\ICheckNetwork.cs" />
     <Compile Include="Connection\IDBConnection.cs" />
     <Compile Include="Helpers\MessengingCenterAlert.cs" />
     <Compile Include="Helpers\ObservableObject.cs" />
@@ -67,6 +68,7 @@
     <Compile Include="Repository\ServiceGateway\Effect\EffectParemeterServiceGateway.cs" />
     <Compile Include="Repository\ServiceGateway\Effect\EffectServiceGateway.cs" />
     <Compile Include="Repository\ServiceGateway\JournalServiceGateway.cs" />
+    <Compile Include="Repository\ServiceGateway\ServiceGatewayFacade.cs" />
     <Compile Include="Repository\ServiceGateway\UriAzure.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\MockDataStore.cs" />
