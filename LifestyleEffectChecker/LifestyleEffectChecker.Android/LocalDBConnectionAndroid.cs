@@ -15,10 +15,10 @@ using SQLite.Net;
 using Xamarin.Forms;
 using Environment = System.Environment;
 
-[assembly: Dependency(typeof(DBConnectionAndroid))]
+[assembly: Dependency(typeof(LocalDBConnectionAndroid))]
 namespace LifestyleEffectChecker.Droid
 {
-    class DBConnectionAndroid : IDBConnection
+    class LocalDBConnectionAndroid : IDBConnection
     {
         public SQLiteConnection GetConnection()
         {

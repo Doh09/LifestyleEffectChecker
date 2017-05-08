@@ -146,9 +146,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DBConnectionAndroid.cs" />
+    <Compile Include="LocalDBConnectionAndroid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
+    <Compile Include="NetworkDBConnectionAndroid.cs" />
     <Compile Include="Resources\Resource.designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

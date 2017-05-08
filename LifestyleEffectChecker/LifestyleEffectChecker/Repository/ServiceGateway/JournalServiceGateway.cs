@@ -42,7 +42,7 @@ namespace LifestyleEffectChecker.Repository.ServiceGateway
                 //If successful reads an journal.
                 if (response.IsSuccessStatusCode)
                 {
-                    return await  Task.FromResult(response.Content.ReadAsAsync<Journal>().Result);
+                    return await Task.FromResult(response.Content.ReadAsAsync<Journal>().Result);
                 }
                 return null;
             }

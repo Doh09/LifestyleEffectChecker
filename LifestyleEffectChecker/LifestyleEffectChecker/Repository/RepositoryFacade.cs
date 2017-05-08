@@ -7,6 +7,7 @@ using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Models.Action;
 using LifestyleEffectChecker.Repository.Action;
 using LifestyleEffectChecker.Repository.Effect;
+using LifestyleEffectChecker.Repository.ServiceGateway;
 
 namespace LifestyleEffectChecker.Repository
 {
