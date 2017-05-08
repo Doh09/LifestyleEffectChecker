@@ -131,6 +131,9 @@
     <Compile Include="Views\DetailViews\Action\PartInformationDetailPage.xaml.cs">
       <DependentUpon>PartInformationDetailPage.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\DetailViews\ListReturn.xaml.cs">
+      <DependentUpon>ListReturn.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\GoogleMapsPage.xaml.cs">
       <DependentUpon>GoogleMapsPage.xaml</DependentUpon>
     </Compile>
@@ -376,6 +379,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Views\SearchPage.xaml">
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Views\DetailViews\ListReturn.xaml">
+      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>

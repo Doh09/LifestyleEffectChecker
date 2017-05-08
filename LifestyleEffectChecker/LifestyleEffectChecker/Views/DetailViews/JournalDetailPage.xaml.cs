@@ -58,5 +58,11 @@ namespace LifestyleEffectChecker.Views.DetailViews
             }
             //
         }
+
+        private void Add_Button_Action_Effekt(object sender, EventArgs e)
+        {
+            // for test
+            JournalsListView.ItemsSource = null;
+        }
     }
 }

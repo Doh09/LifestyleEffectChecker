@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="LifestyleEffectChecker.Views.DetailViews.ListReturn">
+    <StackLayout>
+        <ListView x:Name="JournalsListView"
+				ItemsSource="{Binding Journal.JournalChildren}"
+                VerticalOptions="FillAndExpand"
+                HasUnevenRows="true"
+				ItemSelected="JournalsListView_OnItemSelected">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <StackLayout Padding="10">
+                            <Label Text="{Binding Name}"
+                       LineBreakMode="NoWrap"
+                       Style="{DynamicResource ListItemTextStyle}"
+                       FontSize="16"/>
+                            <Label Text="{Binding Name}"
+                       LineBreakMode="WordWrap"
+                       Style="{DynamicResource ListItemDetailTextStyle}"
+                       FontSize="13"/>
+                        </StackLayout>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+</ContentPage>
