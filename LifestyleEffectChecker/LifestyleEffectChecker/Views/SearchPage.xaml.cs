@@ -15,6 +15,7 @@ namespace LifestyleEffectChecker.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
+        //
         JournalsViewModel jvm;
         List<Journal> List;
         List<DataHolder> DHs = new List<DataHolder>();
