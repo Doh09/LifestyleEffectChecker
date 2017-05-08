@@ -27,7 +27,7 @@ namespace LifestyleEffectChecker.Repository.ServiceGateway.Effect
             return null;
         }
 
-        public async Task<Models.Effect.Effect> Read(int id)
+        public async Task<Models.Effect.Effect> Read(int id, bool goOnline = false)
         {
             using (var client = new HttpClient())
             {
@@ -45,7 +45,7 @@ namespace LifestyleEffectChecker.Repository.ServiceGateway.Effect
             }
         }
 
-        public async Task<IEnumerable<Models.Effect.Effect>> ReadAll()
+        public async Task<IEnumerable<Models.Effect.Effect>> ReadAll(bool goOnline = false)
         {
             using (var client = new HttpClient())
             {

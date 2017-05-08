@@ -10,9 +10,9 @@ namespace LifestyleEffectChecker.Repository
     {
         Task<T> Create(T obj);
 
-        Task<T> Read(int id);
+        Task<T> Read(int id, bool goOnline = false);
 
-        Task<IEnumerable<T>> ReadAll();
+        Task<IEnumerable<T>> ReadAll(bool goOnline = false);
 
         Task<T> Update(T obj);
 

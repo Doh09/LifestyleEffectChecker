@@ -12,37 +12,47 @@ using Xamarin.Forms.Xaml;
 
 namespace LifestyleEffectChecker.Views
 {
-    [XamlCompilation(XamlCompilationOptions.Compile)]
+    //[XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SearchPage : ContentPage
     {
-        //
         JournalsViewModel jvm;
         List<Journal> List;
         List<DataHolder> DHs = new List<DataHolder>();
+        public enum searchTags
+        {
+            All, Journal, Action, ActionPart, PartInformation, Error
+
+        }
+        public searchTags CurrentSeatchTag { get; set; }
         public SearchPage()
         {
             InitializeComponent();
+            CurrentSeatchTag = searchTags.All;
+            ListView_ListOfTypes.ItemTapped += (sender, e) => {
+                string s = (string)e.Item;
+                CurrentSeatchTag = (searchTags)Enum.Parse(typeof(searchTags), s, true);
+            };
 
+            #region
 
             jvm = new JournalsViewModel();
             jvm.LoadJournalsCommand.Execute(null);
             List = jvm.Journals.ToList();
             foreach (var item in List)
             {
-                DHs.Add(new DataHolder { Name = "tim", Objert = item, Type = CheckType(item) });
+                DHs.Add(new DataHolder {Name = item.Name, Objert = item,Type = CheckType(item) });
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
-            List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
-            List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
+
+            //List[3].Actions.Add(new Models.Action.Action() { ID = 1 ,Name = "Mution"});
 
 
-
-            //     BuildList(_LS);
+            #endregion
             Refresh();
         }
         async void OnJournalSelected(object sender, SelectedItemChangedEventArgs args)
         {
-            ListView.ItemsSource = List;
+            ListView_List_of_results.ItemsSource = List;
             var journal = args.SelectedItem as Journal;
             if (journal == null)
                 return;
@@ -50,64 +60,107 @@ namespace LifestyleEffectChecker.Views
             await Navigation.PushAsync(new DetailViews.JournalDetailPage(new ViewModels.Detail.JournalDetailViewModel(journal)));
 
             // Manually deselect item
-            ListView.SelectedItem = null;
+            ListView_List_of_results.SelectedItem = null;
         }
 
         private void Refresh()
         {
-            ListView.ItemsSource = null;
-            ListView.ItemsSource = List;
+            ListView_List_of_results.ItemsSource = null;
+            ListView_List_of_results.ItemsSource = DHs;
         }
 
+        // Buttons
+        #region
+
+        private void Search_Button_OpenListOfTypes(object sender, EventArgs e)
+        {
+            if (ListView_ListOfTypes.HeightRequest == 300) {
+                ListView_ListOfTypes.HeightRequest = 0;
+            } else {
+                ListView_ListOfTypes.HeightRequest = 300;
+            }
+            if (ListView_ListOfTypes.ItemsSource == null)
+            {
+                List<string> L = new List<string>() { };
+                L = Enum.GetNames(typeof(searchTags)).ToList();
+                ListView_ListOfTypes.ItemsSource = null;
+                ListView_ListOfTypes.ItemsSource = L;
+                Refresh();
+            }
+            else
+            {
+                ListView_ListOfTypes.ItemsSource = null;
+                Refresh();
+            }
+        }
         private void Search_Button_Clicked(object sender, EventArgs e)
         {
             // jvm.LoadJournalsCommand.Execute(null);
             List = jvm.Journals.ToList();
             List.Add(new Journal() { Name = "No journals", ID = -1, Actions = new List<Models.Action.Action>() }); //Display this "Journal" if initial loading of journals failed
-
+            DHs.Clear();
             foreach (var journal in List)
             {
-                List<Object> ffv = Search(journal);
+                Search(journal);
             }
+            
             BindingContext = List;
             Refresh();
         }
-
-        private List<Object> Search(Journal journal)
+        #endregion
+        private void Search(Journal journal)
         {
-            //Console.WriteLine("what type do you want");
-            //String SearchType = Console.ReadLine();
-
-            // Console.WriteLine("Write a Text to search for");
-            // string s = Console.ReadLine();
             var KeyWord = EntryKeyWord.Text;
             List<Object> LO = Find(KeyWord, journal);
 
             if (LO != null)
             {
-                foreach (var O in LO)
+                foreach (Object O in LO)
                 {
                     if (O != null)
                     {
-                        DHs.Add(new DataHolder { Name = "Bob", Objert = O, Type = CheckType(O) });
+                        DataHolder DH = new DataHolder { Name = "blah", Objert = O };
+                        DH.Type = CheckType(O);
+                        if (DH.Type == searchTags.Journal)
+                        {
+                            Journal J = (Journal)O;
+                            DH.Name = J.Name;
+                        }
+                        if (DH.Type == searchTags.Action)
+                        {
+                           Models.Action.Action J = (Models.Action.Action)O;
+                            DH.Name = J.Name;
+                        }
+                        if (DH.Type == searchTags.ActionPart)
+                        {
+                            Models.Action.ActionPart J = (Models.Action.ActionPart)O;
+                            DH.Name = J.Name;
+                        }
+                        if (DH.Type == searchTags.PartInformation)
+                        {
+                            Models.Action.PartInformation J = (Models.Action.PartInformation)O;
+                            DH.Name = J.Name;
+                        }
+                        DHs.Add(DH);
                     }
                 }
             }
-            return null;
         }
-        private static string CheckType(Object O)
+        private static searchTags CheckType(Object O)
         {
             if (O.GetType() == typeof(Journal))
             {
-                return ("jounal");
+               return searchTags.Journal;
             }
             else
             {
                 // Console.WriteLine("not a jounal");
             }
+            // same with the other values
+            #region
             if (O.GetType() == typeof(Models.Action.Action))
             {
-                return ("Action");
+                return searchTags.Action;
             }
             else
             {
@@ -115,7 +168,7 @@ namespace LifestyleEffectChecker.Views
             }
             if (O.GetType() == typeof(Models.Action.ActionPart))
             {
-                return ("ActionPart");
+                return searchTags.ActionPart;
             }
             else
             {
@@ -123,39 +176,66 @@ namespace LifestyleEffectChecker.Views
             }
             if (O.GetType() == typeof(Models.Action.PartInformation))
             {
-                return ("PartInformation");
+                return searchTags.PartInformation;
             }
             else
             {
                 //  Console.WriteLine("not a PartInformation");
             }
-            return "Error";
+            #endregion
+            return searchTags.Error;
         }
-
-        public static List<Object> Find(string Key, Journal journal)
+        public List<Object> Find(string Key, Journal journal)
         {
             List<Object> LO = new List<object>();
-            if (journal.Name == Key) { LO.Add(journal); }
+            #region
+            if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Journal) {
+                if (journal.Name == Key || Key == "" + journal.TimeStamp || "" + journal.ID == Key || Key == "")
+                { LO.Add(journal); }
+            }
+            #endregion
             foreach (var action in journal.Actions)
             {
-                if (action.Name == Key) { LO.Add(action); }
+                #region
+                if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.Action)
+                {
+                    if (action.Name == Key || Key == "" + action.TimeStamp || "" + action.ID == Key || Key == "")
+                    { LO.Add(action); }
+                }
+                #endregion
                 foreach (var actionParts in action.ActionParts)
                 {
-                    if (actionParts.Name == Key) { LO.Add(actionParts); }
+                    #region
+                    if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.ActionPart)
+                    {
+                        if (actionParts.Name == Key || Key == "" + actionParts.TimeStamp || "" + actionParts.ID == Key || Key == "")
+                        { LO.Add(actionParts); }
+                    }
+                    #endregion
                     foreach (var partInformations in actionParts.PartInformations)
                     {
-                        if (partInformations.Name == Key) { LO.Add(partInformations); }
+                        #region
+                        if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.PartInformation)
+                        {
+                            if (partInformations.Name == Key || Key == "" + partInformations.TimeStamp || "" + partInformations.ID == Key || Key == "")
+                            { LO.Add(partInformations); }
+                        }
+                        #endregion
                     }
                 }
             }
             return LO;
         }
     }
-
     internal class DataHolder
     {
-        public string Type;
+        public SearchPage.searchTags Type;
         public Object Objert;
         public string Name;
+
+        public override string ToString()
+        {
+            return $"{Name}: \n{Type}";
+        }
     }
 }
