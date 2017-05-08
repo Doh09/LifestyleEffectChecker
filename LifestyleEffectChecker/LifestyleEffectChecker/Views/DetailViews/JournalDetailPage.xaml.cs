@@ -25,8 +25,15 @@ namespace LifestyleEffectChecker.Views.DetailViews
         public JournalDetailPage(JournalDetailViewModel viewModel)
         {
             InitializeComponent();
-
+            var mockAction = new Models.Action.Action();
+            mockAction.Name = viewModel.Journal.Name + "_mockAction";
+            viewModel.Journal.JournalChildren.Add(mockAction);
+            var mockEffect = new Models.Effect.Effect();
+            mockEffect.Name = viewModel.Journal.Name + "_mockEffect";
+            viewModel.Journal.JournalChildren.Add(mockEffect);
+           
             BindingContext = this.viewModel = viewModel;
+
         }
 
         private async void EditJournal_OnClicked(object sender, EventArgs e)

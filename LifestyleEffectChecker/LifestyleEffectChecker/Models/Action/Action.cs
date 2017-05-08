@@ -7,7 +7,7 @@ namespace LifestyleEffectChecker.Models.Action
     /// <summary>
     /// An action you wish to track, e.g. "Eat" or "Excercise"
     /// </summary>
-    public class Action : AbstractBaseObject, JournalChild
+    public class Action : JournalChild
     {
         [ForeignKey(typeof(Journal))]
         public int parentID { get; set; } = -1;

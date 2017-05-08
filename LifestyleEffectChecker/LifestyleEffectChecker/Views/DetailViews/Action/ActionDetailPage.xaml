@@ -4,6 +4,7 @@
              x:Class="LifestyleEffectChecker.Views.DetailViews.Action.ActionDetailPage"
              Title="{Binding Title}">
 	<StackLayout Spacing="20" Padding="15">
+        <Label Text="Action" FontSize="Medium"/>
 		<Label Text="{Binding Action.Name}" FontSize="Medium"/>
         <Label Text="{Binding Action.Name}" FontSize="Small"/>
     </StackLayout>

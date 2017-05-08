@@ -4,7 +4,11 @@ using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Models.Effect
 {
-    public class Effect : AbstractBaseObject, JournalChild
+    /// <summary>
+    /// An effect which you wish to track.
+    /// E.g. "Stress level" or "energy level"
+    /// </summary>
+    public class Effect : JournalChild
     {
         [OneToMany]
         public List<EffectParameter> EffectParameters { get; set; } = new List<EffectParameter>();
