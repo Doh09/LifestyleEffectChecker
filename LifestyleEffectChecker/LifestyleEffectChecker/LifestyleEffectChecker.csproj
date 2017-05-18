@@ -134,9 +134,6 @@
     <Compile Include="Views\DetailViews\ListReturn.xaml.cs">
       <DependentUpon>ListReturn.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GoogleMapsPage.xaml.cs">
-      <DependentUpon>GoogleMapsPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DetailViews\Action\ActionDetailPage.xaml.cs">
       <DependentUpon>ActionDetailPage.xaml</DependentUpon>
     </Compile>
@@ -151,9 +148,6 @@
     </Compile>
     <Compile Include="Views\CreateEditViews\NewJournalPage.xaml.cs">
       <DependentUpon>NewJournalPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\GPSPage.xaml.cs">
-      <DependentUpon>GPSPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\SearchPage.xaml.cs">
       <DependentUpon>SearchPage.xaml</DependentUpon>
@@ -261,18 +255,6 @@
   <ItemGroup>
     <None Include="app.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\GPSPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\GoogleMapsPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Views\DetailViews\Action\ActionDetailPage.xaml">
