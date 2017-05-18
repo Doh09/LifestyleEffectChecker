@@ -25,10 +25,10 @@ namespace LifestyleEffectChecker.Views.DetailViews
         public JournalDetailPage(JournalDetailViewModel viewModel)
         {
             InitializeComponent();
-            var mockAction = new Models.Action.Action();
+            JournalChild mockAction = new Models.Action.Action();
             mockAction.Name = viewModel.Journal.Name + "_mockAction";
             viewModel.Journal.JournalChildren.Add(mockAction);
-            var mockEffect = new Models.Effect.Effect();
+            JournalChild mockEffect = new Models.Effect.Effect();
             mockEffect.Name = viewModel.Journal.Name + "_mockEffect";
             viewModel.Journal.JournalChildren.Add(mockEffect);
            
@@ -59,10 +59,9 @@ namespace LifestyleEffectChecker.Views.DetailViews
             //
         }
 
-        private void Add_Button_Action_Effekt(object sender, EventArgs e)
+        private async void Add_Button_Action_Effekt(object sender, EventArgs e)
         {
-            // for test
-            JournalsListView.ItemsSource = null;
+            await Navigation.PushAsync(new ListReturn(viewModel));
         }
     }
 }
