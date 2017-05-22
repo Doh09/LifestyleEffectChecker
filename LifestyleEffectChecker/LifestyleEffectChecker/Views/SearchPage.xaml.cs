@@ -10,6 +10,8 @@ using System.IO;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using LifestyleEffectChecker.ViewModels.Detail;
+using LifestyleEffectChecker.Models.Action;
 
 namespace LifestyleEffectChecker.Views
 {
@@ -25,9 +27,37 @@ namespace LifestyleEffectChecker.Views
 
         }
         public searchTags CurrentSeatchTag { get; set; }
+        public async void OnListClicked_GoTo_JournalDetailPage(Object Obj)
+        {
+            
+
+            if (Obj.GetType() == typeof(DataHolder))
+            {
+                DataHolder DH = Obj as DataHolder;
+
+                searchTags ST = CheckType(DH.Objert);
+            if (ST == searchTags.Journal)
+            {
+                Journal J = (Journal)DH.Objert;
+                await Navigation.PushAsync(new DetailViews.JournalDetailPage(new JournalDetailViewModel(J)));
+            }
+            if (ST == searchTags.PartInformation)
+            {
+                PartInformation PartJ = (PartInformation)DH.Objert;
+                await Navigation.PushAsync(new DetailViews.Action.PartInformationDetailPage(new ViewModels.Detail.Action.PartInformationDetailViewModel(PartJ)));
+            }
+            }
+        }
         public SearchPage()
         {
             InitializeComponent();
+
+            ListView_List_of_results.ItemTapped += (sender, e) => {
+
+                OnListClicked_GoTo_JournalDetailPage((Object)e.Item);
+                
+            };
+
             CurrentSeatchTag = searchTags.All;
             ListView_ListOfTypes.ItemTapped += (sender, e) =>
             {
@@ -46,7 +76,7 @@ namespace LifestyleEffectChecker.Views
             }
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
 
-            List[3].JournalChildren.Add(new Models.Action.PartInformation() { ID = 1, Name = "Mution" });
+            //List[3].JournalChildren.Add(new Models.Action.PartInformation() { ID = 1, Name = "Mution" });
 
 
             #endregion
@@ -127,7 +157,7 @@ namespace LifestyleEffectChecker.Views
                 {
                     if (O != null)
                     {
-                        DataHolder DH = new DataHolder { Name = "blah", Objert = O };
+                        DataHolder DH = new DataHolder { Name = "Error", Objert = O };
                         DH.Type = CheckType(O);
                         if (DH.Type == searchTags.Journal)
                         {
@@ -154,7 +184,6 @@ namespace LifestyleEffectChecker.Views
             {
                 // Console.WriteLine("not a jounal");
             }
-            // same with the other values
             #region
             if (O.GetType() == typeof(Models.Action.PartInformation))
             {

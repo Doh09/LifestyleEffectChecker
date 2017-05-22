@@ -58,11 +58,11 @@ namespace LifestyleEffectChecker.Repository
         {
 
             //If there is online connection, send signal to the RestAPI
-            //if (_netWork.IsOnline())
-            //{
-            //    await new JournalServiceGateway().Create(obj);
-            //}
-            //_connection.UpdateWithChildren(obj);
+          // if (_netWork.IsOnline())
+          // {
+          //     await new JournalServiceGateway().Create(obj);
+          // }
+            _connection.UpdateWithChildren(obj);
 
             if (obj.JournalChildren != null && obj.JournalChildren.Count != 0)
                 _connection.InsertWithChildren(obj, true);
