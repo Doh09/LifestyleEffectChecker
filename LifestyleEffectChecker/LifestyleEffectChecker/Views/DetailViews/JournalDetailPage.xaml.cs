@@ -1,14 +1,12 @@
 ﻿using System;
 using LifestyleEffectChecker.Models;
+using LifestyleEffectChecker.Models.Action;
 using LifestyleEffectChecker.ViewModels;
 using LifestyleEffectChecker.ViewModels.Detail;
 using LifestyleEffectChecker.ViewModels.Detail.Action;
-using LifestyleEffectChecker.ViewModels.Detail.Effect;
 using LifestyleEffectChecker.Views.CreateEditViews;
 using LifestyleEffectChecker.Views.DetailViews.Action;
-using LifestyleEffectChecker.Views.DetailViews.Effect;
 using Xamarin.Forms;
-using Action = LifestyleEffectChecker.Models.Action.Action;
 
 namespace LifestyleEffectChecker.Views.DetailViews
 {
@@ -25,13 +23,13 @@ namespace LifestyleEffectChecker.Views.DetailViews
         public JournalDetailPage(JournalDetailViewModel viewModel)
         {
             InitializeComponent();
-            var mockAction = new Models.Action.Action();
-            mockAction.Name = viewModel.Journal.Name + "_mockAction";
-            viewModel.Journal.JournalChildren.Add(mockAction);
-            var mockEffect = new Models.Effect.Effect();
-            mockEffect.Name = viewModel.Journal.Name + "_mockEffect";
-            viewModel.Journal.JournalChildren.Add(mockEffect);
-           
+            var mockPartInformation1 = new PartInformation();
+            mockPartInformation1.Name = viewModel.Journal.Name + "_mockAction";
+            viewModel.Journal.JournalChildren.Add(mockPartInformation1);
+            var mockPartInformation2 = new PartInformation();
+            mockPartInformation2.Name = viewModel.Journal.Name + "_mockEffect";
+            viewModel.Journal.JournalChildren.Add(mockPartInformation2);
+
             BindingContext = this.viewModel = viewModel;
 
         }
@@ -48,15 +46,7 @@ namespace LifestyleEffectChecker.Views.DetailViews
 
         private async void JournalsListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            if (e.SelectedItem is Models.Action.Action)
-            {
-                await Navigation.PushAsync(new ActionDetailPage(new ActionDetailViewModel(e.SelectedItem as Models.Action.Action)));
-            }
-            else if (e.SelectedItem is Models.Effect.Effect)
-            {
-                await Navigation.PushAsync(new EffectDetailPage(new EffectDetailViewModel(e.SelectedItem as Models.Effect.Effect)));
-            }
-            //
+                await Navigation.PushAsync(new PartInformationDetailPage(new PartInformationDetailViewModel(e.SelectedItem as PartInformation)));
         }
     }
 }

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using LifestyleEffectChecker.Models.Action;
 using SQLiteNetExtensions.Attributes;
 
 namespace LifestyleEffectChecker.Models
@@ -10,7 +11,7 @@ namespace LifestyleEffectChecker.Models
     public class Journal : AbstractBaseObject
     {
         [OneToMany]
-        public List<JournalChild> JournalChildren { get; set; } = new List<JournalChild>();
+        public List<PartInformation> JournalChildren { get; set; } = new List<PartInformation>();
         //[OneToMany]
         //public List<Action.Action> Actions { get; set; } = new List<Action.Action>();
         //[OneToMany]

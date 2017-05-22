@@ -12,7 +12,7 @@ namespace LifestyleEffectChecker.Models.Action
     /// </summary>
     public class PartInformation : Parameter
     {
-        [ForeignKey(typeof(ActionPart))]
+        [ForeignKey(typeof(Journal))]
         public int parentID { get; set; }
     }
 }

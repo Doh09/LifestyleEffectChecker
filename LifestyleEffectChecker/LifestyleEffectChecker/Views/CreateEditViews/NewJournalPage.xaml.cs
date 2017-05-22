@@ -1,13 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
 using LifestyleEffectChecker.Models;
+using LifestyleEffectChecker.Models.Action;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.CreateEditViews
 {
     public partial class NewJournalPage : ContentPage
     {
-        public bool Edit { get; set; }
+        public bool Edit { get; set; } = false;
         public Item Item { get; set; }
         public Journal Journal { get; set; }
 
@@ -27,7 +28,7 @@ namespace LifestyleEffectChecker.Views.CreateEditViews
                 {
                     ID = -1,
                     Name = "Journal name",
-                    JournalChildren = new List<JournalChild>()
+                    JournalChildren = new List<PartInformation>()
                 };
 
             BindingContext = this;

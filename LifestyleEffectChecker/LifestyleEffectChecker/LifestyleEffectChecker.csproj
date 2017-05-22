@@ -44,104 +44,47 @@
     <Compile Include="Helpers\ObservableObject.cs" />
     <Compile Include="Helpers\ObservableRangeCollection.cs" />
     <Compile Include="Models\AbstractBaseObject.cs" />
-    <Compile Include="Models\Action\Action.cs" />
-    <Compile Include="Models\Action\ActionPart.cs" />
     <Compile Include="Models\BaseDataObject.cs" />
-    <Compile Include="Models\Effect\Effect.cs" />
-    <Compile Include="Models\Effect\EffectParameter.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Models\Journal.cs" />
-    <Compile Include="Models\Action\PartInformation.cs" />
-    <Compile Include="Models\JournalChild.cs" />
+    <Compile Include="Models\PartInformation.cs" />
     <Compile Include="Models\Parameter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repository\Action\ActionPartRepository.cs" />
-    <Compile Include="Repository\Action\ActionRepository.cs" />
-    <Compile Include="Repository\Effect\EffectParameterRepository.cs" />
-    <Compile Include="Repository\Effect\EffectRepository.cs" />
     <Compile Include="Repository\IRepository.cs" />
     <Compile Include="Repository\JournalRepository.cs" />
-    <Compile Include="Repository\Action\PartInformationRepository.cs" />
+    <Compile Include="Repository\PartInformationRepository.cs" />
     <Compile Include="Repository\RepositoryFacade.cs" />
-    <Compile Include="Repository\ServiceGateway\Action\ActionPartServiceGateway.cs" />
-    <Compile Include="Repository\ServiceGateway\Action\ActionServiceGateway.cs" />
-    <Compile Include="Repository\ServiceGateway\Action\PartInformationServiceGateway.cs" />
-    <Compile Include="Repository\ServiceGateway\Effect\EffectParemeterServiceGateway.cs" />
-    <Compile Include="Repository\ServiceGateway\Effect\EffectServiceGateway.cs" />
+    <Compile Include="Repository\ServiceGateway\PartInformationServiceGateway.cs" />
     <Compile Include="Repository\ServiceGateway\JournalServiceGateway.cs" />
     <Compile Include="Repository\ServiceGateway\ServiceGatewayFacade.cs" />
     <Compile Include="Repository\ServiceGateway\UriAzure.cs" />
     <Compile Include="Services\IDataStore.cs" />
     <Compile Include="Services\MockDataStore.cs" />
     <Compile Include="ViewModels\AboutViewModel.cs" />
-    <Compile Include="ViewModels\Detail\Action\ActionDetailViewModel.cs" />
-    <Compile Include="ViewModels\Detail\Effect\EffectParameterDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Detail\Effect\EffectDetailsViewModel.cs" />
-    <Compile Include="ViewModels\Detail\Action\PartInformationDetailViewModel.cs" />
+    <Compile Include="ViewModels\Detail\PartInformationDetailViewModel.cs" />
     <Compile Include="ViewModels\BaseViewModel.cs" />
-    <Compile Include="ViewModels\Detail\Action\ActionPartDetailViewModel.cs" />
     <Compile Include="ViewModels\Detail\JournalDetailViewModel.cs" />
-    <Compile Include="ViewModels\Index\ActionsViewModel.cs" />
     <Compile Include="ViewModels\Index\JournalsViewModel.cs" />
     <Compile Include="Views\AboutPage.xaml.cs">
       <DependentUpon>AboutPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateEditViews\Effect\NewEffectParameterPage.xaml.cs">
-      <DependentUpon>NewEffectParameterPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateEditViews\Effect\NewEffectPage.xaml.cs">
-      <DependentUpon>NewEffectPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateEditViews\Action\NewPartInformationPage.xaml.cs">
+    <Compile Include="Views\CreateEditViews\NewPartInformationPage.xaml.cs">
       <DependentUpon>NewPartInformationPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateEditViews\Action\NewActionPartPage.xaml.cs">
-      <DependentUpon>NewActionPartPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\CreateEditViews\Action\NewActionPage.xaml.cs">
-      <DependentUpon>NewActionPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DeleteViews\Effect\EffectParameterDeletePage.xaml.cs">
-      <DependentUpon>EffectParameterDeletePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DeleteViews\Effect\EffectDeletePage.xaml.cs">
-      <DependentUpon>EffectDeletePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DeleteViews\Action\PartInformationDeletePage.xaml.cs">
+    <Compile Include="Views\DeleteViews\PartInformationDeletePage.xaml.cs">
       <DependentUpon>PartInformationDeletePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DeleteViews\Action\ActionPartDeletePage.xaml.cs">
-      <DependentUpon>ActionPartDeletePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DeleteViews\Action\ActionDeletePage.xaml.cs">
-      <DependentUpon>ActionDeletePage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\DeleteViews\JournalDeletePage.xaml.cs">
       <DependentUpon>JournalDeletePage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DetailViews\Effect\EffectParameterDetailPage.xaml.cs">
-      <DependentUpon>EffectParameterDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DetailViews\Effect\EffectDetailPage.xaml.cs">
-      <DependentUpon>EffectDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DetailViews\Action\ActionPartDetailPage.xaml.cs">
-      <DependentUpon>ActionPartDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\DetailViews\Action\PartInformationDetailPage.xaml.cs">
+    <Compile Include="Views\DetailViews\PartInformationDetailPage.xaml.cs">
       <DependentUpon>PartInformationDetailPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GoogleMapsPage.xaml.cs">
       <DependentUpon>GoogleMapsPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\DetailViews\Action\ActionDetailPage.xaml.cs">
-      <DependentUpon>ActionDetailPage.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\DetailViews\JournalDetailPage.xaml.cs">
       <DependentUpon>JournalDetailPage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IndexViews\ActionTypes\ActionsIndexPage.xaml.cs">
-      <DependentUpon>ActionsIndexPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IndexViews\JournalsIndexPage.xaml.cs">
       <DependentUpon>JournalsIndexPage.xaml</DependentUpon>
@@ -269,70 +212,14 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DetailViews\Action\ActionDetailPage.xaml">
+    <EmbeddedResource Include="Views\DetailViews\PartInformationDetailPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Views\DetailViews\Action\PartInformationDetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DetailViews\Action\ActionPartDetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\IndexViews\EffectTypes\" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CreateEditViews\Action\NewActionPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CreateEditViews\Action\NewActionPartPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CreateEditViews\Action\NewPartInformationPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CreateEditViews\Effect\NewEffectPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\CreateEditViews\Effect\NewEffectParameterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DetailViews\Effect\EffectDetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DetailViews\Effect\EffectParameterDetailPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\IndexViews\ActionTypes\ActionsIndexPage.xaml">
+    <EmbeddedResource Include="Views\CreateEditViews\NewPartInformationPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>
@@ -344,31 +231,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Views\DeleteViews\Action\ActionDeletePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DeleteViews\Action\ActionPartDeletePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DeleteViews\Action\PartInformationDeletePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DeleteViews\Effect\EffectDeletePage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Views\DeleteViews\Effect\EffectParameterDeletePage.xaml">
+    <EmbeddedResource Include="Views\DeleteViews\PartInformationDeletePage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </EmbeddedResource>

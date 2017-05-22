@@ -10,6 +10,12 @@
             <Entry Text="{Binding PartInformation.Name}" FontSize="Small" />
 			<Label Text="Description" FontSize="Medium" />
             <Editor Text="{Binding PartInformation.Name}" FontSize="Small" Margin="0" />
+            <Label Text="Measurement type" FontSize="Medium" />
+            <Picker x:Name="measureMethodPicker"></Picker>
+            <Label Text="pickedMeasure" FontSize="Medium" x:Name="pickedMeasure" />
+            <StackLayout Orientation="Horizontal" x:Name="pickedMeasuringMethodSL">
+                
+            </StackLayout>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

@@ -33,9 +33,7 @@ namespace LifestyleEffectChecker.ViewModels.Index
 
             MessagingCenter.Subscribe<NewJournalPage, Journal>(this, "AddJournal", async (obj, journal) =>
                 {
-                //It gets here when you click save in the item page.
-                await journalRepository.Create(journal);
-                    Journals.Add(journal);
+                    await journalRepository.Create(journal);
                     await ExecuteLoadJournalsCommand();
                 });
 
@@ -43,8 +41,6 @@ namespace LifestyleEffectChecker.ViewModels.Index
             {
                 //It gets here when you click save in the item page.
                 await journalRepository.Update(journal);
-                //var toEdit = Journals.FirstOrDefault(x => x.ID == journal.ID);
-
                 await ExecuteLoadJournalsCommand();
             });
 
