@@ -48,10 +48,10 @@ namespace LifestyleEffectChecker.Repository
         public async Task<Journal> Create(Journal obj)
         {
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await new JournalServiceGateway().Create(obj);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await new JournalServiceGateway().Create(obj);
+            //}
 
             _connection.Insert(obj);
 

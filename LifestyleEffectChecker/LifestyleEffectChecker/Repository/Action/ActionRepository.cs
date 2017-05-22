@@ -33,10 +33,11 @@ namespace LifestyleEffectChecker.Repository.Action
         public async Task<Models.Action.Action> Create(Models.Action.Action obj)
         {
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Create(obj);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Create(obj);
+            //}
+            
             _connection.Insert(obj);
             return await Task.FromResult(obj);
         }

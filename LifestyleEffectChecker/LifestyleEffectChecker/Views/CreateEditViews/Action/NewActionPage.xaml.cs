@@ -27,10 +27,10 @@ namespace LifestyleEffectChecker.Views.CreateEditViews.Action
         }
 
         async void Save_Clicked(object sender, EventArgs e)
-        {
+        {  
+            MessagingCenter.Send(this, "AddAction", Action);
 
-            //MessagingCenter.Send(this, "AddItem", Item);
-            await Navigation.PopToRootAsync();
+        await Navigation.PopToRootAsync();
         }
     }
 }

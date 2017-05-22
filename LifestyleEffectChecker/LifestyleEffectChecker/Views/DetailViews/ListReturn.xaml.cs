@@ -13,6 +13,7 @@ using static Java.Util.Jar.Attributes;
 
 namespace LifestyleEffectChecker.Views.DetailViews
 {
+    // not includete
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListReturn : ContentPage
     {
@@ -50,8 +51,9 @@ namespace LifestyleEffectChecker.Views.DetailViews
 
         private void OnButtonClicked_button_Back(JournalChild JournalChild)
         {
-            Navigation.RemovePage(this);
             viewModel.Journal.JournalChildren.Add(JournalChild);
+            Navigation.RemovePage(this);
+            
         }
 
         public void UpdateView()
