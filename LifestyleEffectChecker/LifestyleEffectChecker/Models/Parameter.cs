@@ -40,6 +40,42 @@ namespace LifestyleEffectChecker.Models
                     return "No measuring method defined";
             }
         }
+
+        public void SetValue(object value)
+        {
+            switch (MeasuringMethod)
+            {
+                case MeasuringMethod.Text:
+                    Text = (string)value;
+                    break;
+                case MeasuringMethod.Decimal:
+                    DecimalValue = (double)value;
+                    break;
+                case MeasuringMethod.Number:
+                    NumberValue = (int)value;
+                    break;
+                case MeasuringMethod.Picture:
+                    ImgPath = (string)value;
+                    break;
+                case MeasuringMethod.Slider:
+                    SliderValue = (double)value;
+                    break;
+                default:
+                    break;
+            }
+        }
+        public void SetValue(object value1, object value2)
+        {
+            switch (MeasuringMethod)
+            {
+                case MeasuringMethod.GPSLocation:
+                    GeoPosition.Latitude = (double)value1;
+                    GeoPosition.Longitude = (double)value2;
+                    break;
+                default:
+                    break;
+            }
+        }
     }
 
     public enum MeasuringMethod

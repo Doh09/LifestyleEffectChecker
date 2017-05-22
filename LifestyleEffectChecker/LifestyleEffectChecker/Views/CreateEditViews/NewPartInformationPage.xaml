@@ -13,9 +13,8 @@
             <Label Text="Measurement type" FontSize="Medium" />
             <Picker x:Name="measureMethodPicker"></Picker>
             <Label Text="pickedMeasure" FontSize="Medium" x:Name="pickedMeasure" />
-            <StackLayout Orientation="Horizontal" x:Name="pickedMeasuringMethodSL">
-                
-            </StackLayout>
+            <StackLayout x:Name="pickedMeasureSL"></StackLayout>
+            <ListView x:Name="pickedMeasuresList"></ListView>
 		</StackLayout>
 	</ContentPage.Content>
 </ContentPage>

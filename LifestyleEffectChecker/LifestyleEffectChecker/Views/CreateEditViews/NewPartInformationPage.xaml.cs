@@ -38,10 +38,10 @@ namespace LifestyleEffectChecker.Views.CreateEditViews.Action
                     MeasuringMethod mm = measuringMethods.Values.ToList()[measureMethodPicker.SelectedIndex];
                     //string methodName = measureMethodPicker.Items[measureMethodPicker.SelectedIndex];
                     PartInformation.MeasuringMethod = mm;
-                    pickedMeasure.Text = mm.ToString();
-                    pickedMeasuringMethodSL = getMeasuringUI(mm);
+                    pickedMeasure.Text = PartInformation.MeasuringMethod.ToString();
+                    pickedMeasureSL.Children.Clear();
+                    pickedMeasureSL.Children.Add(getMeasuringUI(mm));
                 }
-
             };
 
             PartInformation = new PartInformation()
@@ -74,15 +74,27 @@ namespace LifestyleEffectChecker.Views.CreateEditViews.Action
                     var slider = new Slider(0,10,5);
                     toReturn.Children.Add(slider);
                     break;
+                case MeasuringMethod.Picture:
+                    var picture = new Slider(0, 10, 5);
+                    toReturn.Children.Add(picture);
+                    break;
+                case MeasuringMethod.GPSLocation:
+                    var gPSLocation = new Slider(0, 10, 5);
+                    toReturn.Children.Add(gPSLocation);
+                    break;
+                case MeasuringMethod.Number:
+                    var NumberEntry = new Entry();
+                    NumberEntry.Keyboard = Keyboard.Numeric;
+                    NumberEntry.Placeholder = "Enter number without decimals";
+                    toReturn.Children.Add(NumberEntry);
+                    break;
 
             }
-
             return toReturn;
         }
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-
             //MessagingCenter.Send(this, "AddItem", Item);
             await Navigation.PopToRootAsync();
         }
