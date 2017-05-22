@@ -53,6 +53,7 @@ namespace LifestyleEffectChecker.Views
         async void OnJournalSelected(object sender, SelectedItemChangedEventArgs args)
         {
             ListView_List_of_results.ItemsSource = List;
+
             var journal = args.SelectedItem as Journal;
             if (journal == null)
                 return;
@@ -67,6 +68,8 @@ namespace LifestyleEffectChecker.Views
         {
             ListView_List_of_results.ItemsSource = null;
             ListView_List_of_results.ItemsSource = DHs;
+            SearchResultsListView.ItemsSource = null;
+            SearchResultsListView.ItemsSource = DHs;
         }
 
         // Buttons
@@ -258,6 +261,10 @@ namespace LifestyleEffectChecker.Views
             }
             return LO;
         }
+
+        async void SearchResult(object sender, SelectedItemChangedEventArgs args)
+        {
+        }
     }
     internal class DataHolder
     {
@@ -270,4 +277,5 @@ namespace LifestyleEffectChecker.Views
             return $"{Name}: \n{Type}";
         }
     }
-}
+
+    }

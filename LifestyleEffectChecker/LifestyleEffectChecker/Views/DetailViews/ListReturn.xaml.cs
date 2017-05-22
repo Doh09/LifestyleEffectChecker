@@ -56,7 +56,7 @@ namespace LifestyleEffectChecker.Views.DetailViews
 
         public void UpdateView()
         {
-            List<JournalChild> JCList = viewModel.Journal.JournalChildren;
+            List<JournalChild> JCList = viewModel.Journal.JournalChildren; // GetJournallChildren();
             List<JournalChildDataHolder> JCDHList = new List<JournalChildDataHolder>();
             foreach (var item in JCList)
             {
@@ -65,6 +65,26 @@ namespace LifestyleEffectChecker.Views.DetailViews
             ChildListView.ItemsSource = null;
             ChildListView.ItemsSource = JCDHList;
         }
+
+    //  private async List<JournalChild> GetJournallChildren()
+    //  {
+    //      try
+    //      {
+    //          var journals = await journalRepository.ReadAll();//await DataStore.GetItemsAsync(true);
+    //
+    //          return Journals = new ObservableRangeCollection<Journal>(journals);
+    //      }
+    //      catch (Exception ex)
+    //      {
+    //          MessagingCenter.Send(new MessagingCenterAlert
+    //          {
+    //              Title = "Error",
+    //              Message = "Unable to load journals.",
+    //              Cancel = "OK"
+    //          }, "message");
+    //      }
+    //      return new List<JournalChild>();
+    //  }
     }
 
     internal class JournalChildDataHolder
