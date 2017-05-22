@@ -17,8 +17,7 @@
                 <ColumnDefinition Width="3*" />
             </Grid.ColumnDefinitions>
             <Label Grid.Column="0" Text="{Binding Journal.Name}" FontSize="Small"/>
-            <Button Grid.Column="1" Text="Add Action" Clicked="Add_Button_Action"></Button>
-            <Button Grid.Column="2" Text="Add Effekt" Clicked="Add_Button_Effekt"></Button>
+
         </Grid>
         <StackLayout>
             <ListView x:Name="JournalsListView"
