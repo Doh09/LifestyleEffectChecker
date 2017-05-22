@@ -9,7 +9,17 @@
     </ContentPage.ToolbarItems>
     <StackLayout Spacing="20" Padding="15">
 		<Label Text="{Binding Journal.Name}" FontSize="Medium"/>
-        <Label Text="{Binding Journal.Name}" FontSize="Small"/>
+        
+        <Grid HeightRequest="65">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*" />
+                <ColumnDefinition Width="3*" />
+                <ColumnDefinition Width="3*" />
+            </Grid.ColumnDefinitions>
+            <Label Grid.Column="0" Text="{Binding Journal.Name}" FontSize="Small"/>
+            <Button Grid.Column="1" Text="Add Action" Clicked="Add_Button_Action"></Button>
+            <Button Grid.Column="2" Text="Add Effekt" Clicked="Add_Button_Effekt"></Button>
+        </Grid>
         <StackLayout>
             <ListView x:Name="JournalsListView"
 				ItemsSource="{Binding Journal.JournalChildren}"
