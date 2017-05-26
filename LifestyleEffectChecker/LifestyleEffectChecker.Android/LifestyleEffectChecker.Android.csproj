@@ -146,6 +146,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Camera\CameraHandlerAndroid.cs" />
+    <Compile Include="Camera\CameraMediator.cs" />
     <Compile Include="LocalDBConnectionAndroid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="MainApplication.cs" />
