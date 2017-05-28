@@ -14,5 +14,7 @@ namespace LifestyleEffectChecker.Models.Action
     {
         [ForeignKey(typeof(Journal))]
         public int parentID { get; set; }
+    
+        public Journal Journal { get; set; }
     }
 }
