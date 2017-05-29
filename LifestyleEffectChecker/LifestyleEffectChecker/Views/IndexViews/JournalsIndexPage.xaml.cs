@@ -22,7 +22,7 @@ namespace LifestyleEffectChecker.Views.IndexViews
         public JournalsIndexPage()
         {
             InitializeComponent();
-            viewModel = new JournalsViewModel();
+            viewModel = JournalsViewModel.GetInstance();
             
             BindingContext = viewModel;
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;

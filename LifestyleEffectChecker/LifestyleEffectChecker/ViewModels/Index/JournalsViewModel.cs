@@ -15,6 +15,7 @@ namespace LifestyleEffectChecker.ViewModels.Index
 {
     public class JournalsViewModel : BaseViewModel
     {
+        
         public ObservableRangeCollection<Item> Items { get; set; }
         public ObservableRangeCollection<Journal> Journals { get; set; }
 
@@ -23,8 +24,18 @@ namespace LifestyleEffectChecker.ViewModels.Index
 
         IRepository<Journal> journalRepository = RepositoryFacade.GetJournalRepository();
 
-        public JournalsViewModel()
+        private static JournalsViewModel instance;
+
+        public static JournalsViewModel GetInstance()
         {
+            if (instance == null)
+                instance = new JournalsViewModel();
+            return instance;
+        }
+
+        private JournalsViewModel()
+        {
+            
             Title = "Browse Journals";
             Items = new ObservableRangeCollection<Item>();
             Journals = new ObservableRangeCollection<Journal>();

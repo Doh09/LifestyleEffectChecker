@@ -45,13 +45,13 @@ namespace LifestyleEffectChecker.Repository
 
         public async Task<PartInformation> Read(int id, bool goOnline = false)
         {   //If there is online connection, send signal to the RestAPI
-            if (goOnline)
-            {
-                if (_netWork.IsOnline())
-                {
-                    return await _serviceGateway.Read(id);
-                }
-            }
+            //if (goOnline)
+            //{
+            //    if (_netWork.IsOnline())
+            //    {
+            //        return await _serviceGateway.Read(id);
+            //    }
+            //}
             return await Task.FromResult(_connection.Table<PartInformation>().FirstOrDefault(action => action.ID == id));
         }
 
@@ -69,20 +69,20 @@ namespace LifestyleEffectChecker.Repository
 
         public async Task<PartInformation> Update(PartInformation obj)
         {    //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Update(obj);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Update(obj);
+            //}
             _connection.Update(obj);
             return await Task.FromResult(obj);
         }
 
         public async Task<bool> Delete(int id)
         { //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Delete(id);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Delete(id);
+            //}
             _connection.Delete<PartInformation>(id);
             return await Task.FromResult(Read(id) != null);
         }

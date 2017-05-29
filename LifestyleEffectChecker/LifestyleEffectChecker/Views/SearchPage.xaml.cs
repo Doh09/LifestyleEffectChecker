@@ -66,7 +66,7 @@ namespace LifestyleEffectChecker.Views
 
             #region
 
-            jvm = new JournalsViewModel();
+            jvm = JournalsViewModel.GetInstance();
             jvm.LoadJournalsCommand.Execute(null);
             List = jvm.Journals.ToList();
             foreach (var item in List)

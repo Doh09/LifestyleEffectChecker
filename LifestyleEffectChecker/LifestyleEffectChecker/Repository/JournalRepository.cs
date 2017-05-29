@@ -57,15 +57,15 @@ namespace LifestyleEffectChecker.Repository
         {
 
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await new JournalServiceGateway().Create(obj);
-            }
-            _connection.UpdateWithChildren(obj);
+            //if (_netWork.IsOnline())
+            //{
+            //    await new JournalServiceGateway().Create(obj);
+            //}
+            //_connection.UpdateWithChildren(obj);
 
-            if (obj.JournalChildren != null && obj.JournalChildren.Count != 0)
-                _connection.InsertWithChildren(obj, true);
-            else
+            //if (obj.JournalChildren != null && obj.JournalChildren.Count != 0)
+            //    _connection.InsertWithChildren(obj, true);
+            //else
             {
                 _connection.Insert(obj);
             }
@@ -76,28 +76,28 @@ namespace LifestyleEffectChecker.Repository
         public async Task<Journal> Read(int id, bool goOnline = false)
         {
             //If there is online connection, send signal to the RestAPI
-            if (goOnline)
-            {
-                if (_netWork.IsOnline())
-                {
-                    return await _serviceGateway.Read(id);
-                }
-            }
+            //if (goOnline)
+            //{
+            //    if (_netWork.IsOnline())
+            //    {
+            //        return await _serviceGateway.Read(id);
+            //    }
+            //}
             return await Task.FromResult(_connection.Table<Journal>().FirstOrDefault(journal => journal.ID == id));
         }
 
         public async Task<IEnumerable<Journal>> ReadAll(bool goOnline = false)
         {
             //If there is online connection, send signal to the RestAPI
-            if (goOnline)
-            {
-                if (_netWork.IsOnline())
-                {
-                    return await _serviceGateway.ReadAll();
-                }
-            }
+            //if (goOnline)
+            //{
+            //    if (_netWork.IsOnline())
+            //    {
+            //        return await _serviceGateway.ReadAll();
+            //    }
+            //}
             //var journals = (from t in _connection.Table<Journal>() select t).ToList();
-            var journals = (from t in _connection.Table<Journal>() select t);
+            var journals = (from t in _connection.Table<Journal>() select t).ToList();
             var toReturn = await Task.FromResult(journals);
 
             return toReturn;
@@ -106,10 +106,10 @@ namespace LifestyleEffectChecker.Repository
         public async Task<Journal> Update(Journal obj)
         {
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Update(obj);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Update(obj);
+            //}
 
             _connection.Update(obj);
             return await Task.FromResult(obj);
@@ -118,10 +118,10 @@ namespace LifestyleEffectChecker.Repository
         public async Task<bool> Delete(int id)
         {
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Delete(id);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Delete(id);
+            //}
             _connection.Delete<Journal>(id);
             return await Task.FromResult(Read(id) != null);
         }
