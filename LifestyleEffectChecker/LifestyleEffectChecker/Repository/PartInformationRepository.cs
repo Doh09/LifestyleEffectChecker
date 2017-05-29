@@ -2,12 +2,12 @@
 using System.Linq;
 using System.Threading.Tasks;
 using LifestyleEffectChecker.Connection;
-using LifestyleEffectChecker.Models.Action;
+using LifestyleEffectChecker.Models;
 using LifestyleEffectChecker.Repository.ServiceGateway;
 using SQLite.Net;
 using Xamarin.Forms;
 
-namespace LifestyleEffectChecker.Repository.Action
+namespace LifestyleEffectChecker.Repository
 {
     class PartInformationRepository : IRepository<PartInformation>
     {
@@ -35,10 +35,10 @@ namespace LifestyleEffectChecker.Repository.Action
         public async Task<PartInformation> Create(PartInformation obj)
         {
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Create(obj);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Create(obj);
+            //}
             _connection.Insert(obj);
             return await Task.FromResult(obj);
         }
@@ -57,13 +57,13 @@ namespace LifestyleEffectChecker.Repository.Action
 
         public async Task<IEnumerable<PartInformation>> ReadAll(bool goOnline = false)
         { //If there is online connection, send signal to the RestAPI
-            if (goOnline)
-            {
-                if (_netWork.IsOnline())
-                {
-                    return await _serviceGateway.ReadAll();
-                }
-            }
+            //if (goOnline)
+            //{
+            //    if (_netWork.IsOnline())
+            //    {
+            //        return await _serviceGateway.ReadAll();
+            //    }
+            //}
             return await Task.FromResult((from t in _connection.Table<PartInformation>() select t).ToList());
         }
 

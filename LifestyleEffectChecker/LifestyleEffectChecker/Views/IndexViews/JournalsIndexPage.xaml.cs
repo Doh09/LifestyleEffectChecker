@@ -1,12 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Globalization;
+using DeviceMotion.Plugin;
+using DeviceMotion.Plugin.Abstractions;
 using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
 using LifestyleEffectChecker.ViewModels;
 using LifestyleEffectChecker.ViewModels.Detail;
 using LifestyleEffectChecker.ViewModels.Index;
 using LifestyleEffectChecker.Views.CreateEditViews;
+using System.Numerics;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.IndexViews
@@ -14,7 +17,8 @@ namespace LifestyleEffectChecker.Views.IndexViews
     public partial class JournalsIndexPage : ContentPage
     {
         JournalsViewModel viewModel;
-
+        private MotionSensorType _sensorType;
+        Random random = new Random();
         public JournalsIndexPage()
         {
             InitializeComponent();
@@ -23,7 +27,11 @@ namespace LifestyleEffectChecker.Views.IndexViews
             BindingContext = viewModel;
             //viewModel.Journals.CollectionChanged += ListenToJournalChanges;
             viewModel.Journals.Add(new Journal() { Name = "No journals", ID = -1, JournalChildren = new List<PartInformation>() }); //Display this "Journal" if initial loading of journals failed
+
+            SetUpColorMotion();
         }
+
+
 
         void ListenToJournalChanges(object sender, NotifyCollectionChangedEventArgs e)
         {
@@ -60,6 +68,36 @@ namespace LifestyleEffectChecker.Views.IndexViews
                     viewModel.LoadJournalsCommand.Execute(null);
                     ListenToJournalChanges(null, null);
                 }
+            }
+        }
+
+        private void SetUpColorMotion()
+        {
+            //CrossDeviceMotion.Current.Start(_sensorType, MotionSensorDelay.Default);
+            _sensorType = MotionSensorType.Accelerometer;
+
+            CrossDeviceMotion.Current.SensorValueChanged += (s, a) =>
+            {
+
+                if (a.SensorType == _sensorType)
+                {
+                    string hexColor = String.Format("#{0:X6}", random.Next(0x1000000));
+                    App.Current.Resources["Primary"] = hexColor;
+                    //;
+
+                }
+            };
+        }
+
+        private void FunkyColours_OnClicked(object sender, EventArgs e)
+        {
+            if (CrossDeviceMotion.Current.IsActive(_sensorType))
+            {
+                CrossDeviceMotion.Current.Stop(_sensorType);
+            }
+            else
+            {
+                CrossDeviceMotion.Current.Start(_sensorType, MotionSensorDelay.Default);
             }
         }
     }

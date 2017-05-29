@@ -7,41 +7,51 @@
         <ToolbarItem Text="Edit" Clicked="EditJournal_OnClicked" />
         <ToolbarItem Text="Delete" Clicked="DeleteJournal_OnClicked" />
     </ContentPage.ToolbarItems>
-    <StackLayout Spacing="20" Padding="15">
-		<Label Text="{Binding Journal.Name}" FontSize="Medium"/>
-        
-        <Grid HeightRequest="65">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="5*" />
-                <ColumnDefinition Width="3*" />
-                <ColumnDefinition Width="3*" />
-            </Grid.ColumnDefinitions>
-            <Label Grid.Column="0" Text="{Binding Journal.Name}" FontSize="Small"/>
+    <ContentPage.Content>
+        <StackLayout Spacing="20" Padding="15">
+            <Label Text="{Binding Journal.Name}" FontSize="Medium"/>
 
-        </Grid>
-        <StackLayout>
-            <ListView x:Name="JournalsListView"
+            <Grid>
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="5*" />
+                    <ColumnDefinition Width="3*" />
+                    <ColumnDefinition Width="3*" />
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" Text="{Binding Journal.Name}" FontSize="Small"/>
+
+            </Grid>
+            <Button x:Name="btn_AddPartInformation" Clicked="Btn_AddPartInformation_OnClicked"></Button>
+            <Label x:Name="AmountOfJournalEntries" Text="Journal entries made: "></Label>
+            <ScrollView>
+                <StackLayout Orientation="Vertical">
+                    <ListView x:Name="JournalsPartInformationsListView"
 				ItemsSource="{Binding Journal.JournalChildren}"
                 VerticalOptions="FillAndExpand"
-                HasUnevenRows="true"
+               RefreshCommand="{Binding childrenViewModel.LoadPartInformationsCommand}"
+                IsPullToRefreshEnabled="true"
+                IsRefreshing="{Binding IsBusy, Mode=OneWay}"
+                CachingStrategy="RecycleElement"
 				ItemSelected="JournalsListView_OnItemSelected">
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <ViewCell>
-                            <StackLayout Padding="10">
-                                <Label Text="{Binding Name}"
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <StackLayout Padding="10">
+                                        <Label Text="{Binding Name}"
                        LineBreakMode="NoWrap"
                        Style="{DynamicResource ListItemTextStyle}"
                        FontSize="16"/>
-                                <Label Text="{Binding Name}"
+                                        <Label Text="{Binding Name}"
                        LineBreakMode="WordWrap"
                        Style="{DynamicResource ListItemDetailTextStyle}"
                        FontSize="13"/>
-                            </StackLayout>
-                        </ViewCell>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
+                                    </StackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+            </ScrollView>
         </StackLayout>
-    </StackLayout>
+        </ContentPage.Content>
 </ContentPage>

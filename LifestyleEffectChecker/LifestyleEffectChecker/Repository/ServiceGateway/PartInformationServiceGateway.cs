@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Text;
 using System.Threading.Tasks;
-using LifestyleEffectChecker.Models.Action;
+using LifestyleEffectChecker.Models;
 
-namespace LifestyleEffectChecker.Repository.ServiceGateway.Action
+namespace LifestyleEffectChecker.Repository.ServiceGateway
 {
     class PartInformationServiceGateway : IRepository<PartInformation>
     {

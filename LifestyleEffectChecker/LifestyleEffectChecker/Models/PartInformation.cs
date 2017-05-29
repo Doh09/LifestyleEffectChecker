@@ -1,6 +1,6 @@
 ﻿using SQLiteNetExtensions.Attributes;
 
-namespace LifestyleEffectChecker.Models.Action
+namespace LifestyleEffectChecker.Models
 {
     /// <summary>
     /// The parameter with which you track, e.g. if you were running,  you could track for how many minutes.

@@ -1,8 +1,7 @@
-﻿using LifestyleEffectChecker.ViewModels;
-using LifestyleEffectChecker.ViewModels.Detail.Action;
+﻿using LifestyleEffectChecker.ViewModels.Detail;
 using Xamarin.Forms;
 
-namespace LifestyleEffectChecker.Views.DetailViews.Action
+namespace LifestyleEffectChecker.Views.DetailViews
 {
     public partial class PartInformationDetailPage : ContentPage
     {

@@ -1,11 +1,11 @@
 ﻿using System;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
 using LifestyleEffectChecker.ViewModels;
 using LifestyleEffectChecker.ViewModels.Detail;
-using LifestyleEffectChecker.ViewModels.Detail.Action;
+using LifestyleEffectChecker.ViewModels.Index;
 using LifestyleEffectChecker.Views.CreateEditViews;
-using LifestyleEffectChecker.Views.DetailViews.Action;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.DetailViews
@@ -13,6 +13,7 @@ namespace LifestyleEffectChecker.Views.DetailViews
     public partial class JournalDetailPage : ContentPage
     {
         JournalDetailViewModel viewModel;
+        PartInformationsViewModel childrenViewModel = new PartInformationsViewModel(null);
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
         public JournalDetailPage()
@@ -31,6 +32,8 @@ namespace LifestyleEffectChecker.Views.DetailViews
             viewModel.Journal.JournalChildren.Add(mockPartInformation2);
 
             BindingContext = this.viewModel = viewModel;
+            childrenViewModel.ParentJournal = viewModel.Journal;
+            childrenViewModel.LoadPartInformationsCommand.Execute(null);
 
         }
 
@@ -47,6 +50,35 @@ namespace LifestyleEffectChecker.Views.DetailViews
         private async void JournalsListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
                 await Navigation.PushAsync(new PartInformationDetailPage(new PartInformationDetailViewModel(e.SelectedItem as PartInformation)));
+        }
+
+        private async void Btn_AddPartInformation_OnClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new NewPartInformationPage());
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+            if (JournalsPartInformationsListView.RefreshCommand == null)
+            {
+                JournalsPartInformationsListView.RefreshCommand = childrenViewModel.LoadPartInformationsCommand;
+            }
+            ListenToPartInformationsChanges(null, null);
+        }
+
+        void ListenToPartInformationsChanges(object sender, NotifyCollectionChangedEventArgs e)
+        {
+            //viewModel.LoadJournalsCommand.Execute(null);
+            if (JournalsPartInformationsListView != null)
+            {
+
+                    JournalsPartInformationsListView.RefreshCommand.Execute(null);
+                    JournalsPartInformationsListView.ItemsSource = null;
+                    JournalsPartInformationsListView.ItemsSource = viewModel.Journal.JournalChildren;
+                    AmountOfJournalEntries.Text = "Journal entries made: " + viewModel.Journal.JournalChildren.Count;
+
+            }
         }
     }
 }

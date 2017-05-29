@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
 using Xamarin.Forms;
 
 namespace LifestyleEffectChecker.Views.CreateEditViews

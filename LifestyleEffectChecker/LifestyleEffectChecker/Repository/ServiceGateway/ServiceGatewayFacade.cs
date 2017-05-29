@@ -4,9 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
-using LifestyleEffectChecker.Repository.Action;
-using LifestyleEffectChecker.Repository.ServiceGateway.Action;
 
 namespace LifestyleEffectChecker.Repository.ServiceGateway
 {

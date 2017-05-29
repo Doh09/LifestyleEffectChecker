@@ -1,20 +1,23 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Google.Apis.Discovery;
 using LifestyleEffectChecker.Models;
 using Xamarin.Forms;
-using PartInformation = LifestyleEffectChecker.Models.Action.PartInformation;
+using PartInformation = LifestyleEffectChecker.Models.PartInformation;
 
-namespace LifestyleEffectChecker.Views.CreateEditViews.Action
+namespace LifestyleEffectChecker.Views.CreateEditViews
 {
     public partial class NewPartInformationPage : ContentPage
     {
+        public bool Edit { get; set; } = false;
+
         public PartInformation PartInformation { get; set; }
 
-        public NewPartInformationPage()
+        public NewPartInformationPage(bool edit = false, PartInformation partInformation = null)
         {
             InitializeComponent();
+            this.Edit = edit;
+            this.PartInformation = partInformation;
 
             Dictionary<string, MeasuringMethod> measuringMethods = new Dictionary<string, MeasuringMethod>
         {
@@ -76,6 +79,7 @@ namespace LifestyleEffectChecker.Views.CreateEditViews.Action
                     break;
                 case MeasuringMethod.Picture:
                     var picture = new Slider(0, 10, 5);
+                    //TODO Here should also be buttons to browsing for or taking an image.
                     toReturn.Children.Add(picture);
                     break;
                 case MeasuringMethod.GPSLocation:
@@ -95,8 +99,15 @@ namespace LifestyleEffectChecker.Views.CreateEditViews.Action
 
         async void Save_Clicked(object sender, EventArgs e)
         {
-            //MessagingCenter.Send(this, "AddItem", Item);
-            await Navigation.PopToRootAsync();
+            if (!Edit)
+            {
+                MessagingCenter.Send(this, "AddPartInformation", PartInformation);
+            }
+            else if (Edit)
+            {
+                MessagingCenter.Send(this, "EditPartInformation", PartInformation);
+            }
+            await Navigation.PopAsync();
         }
     }
 }

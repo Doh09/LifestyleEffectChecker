@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 using LifestyleEffectChecker.Connection;
 using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
-using LifestyleEffectChecker.Repository.Action;
 using LifestyleEffectChecker.Repository.ServiceGateway;
 using Xamarin.Forms;
 

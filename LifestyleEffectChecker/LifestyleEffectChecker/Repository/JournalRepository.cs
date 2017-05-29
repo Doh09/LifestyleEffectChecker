@@ -5,7 +5,6 @@ using System.Text;
 using System.Threading.Tasks;
 using LifestyleEffectChecker.Connection;
 using LifestyleEffectChecker.Models;
-using LifestyleEffectChecker.Models.Action;
 using LifestyleEffectChecker.Repository.ServiceGateway;
 using SQLite.Net;
 using SQLiteNetExtensions.Extensions;
@@ -107,10 +106,10 @@ namespace LifestyleEffectChecker.Repository
         public async Task<Journal> Update(Journal obj)
         {
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Update(obj);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Update(obj);
+            //}
 
             _connection.Update(obj);
             return await Task.FromResult(obj);
@@ -119,10 +118,10 @@ namespace LifestyleEffectChecker.Repository
         public async Task<bool> Delete(int id)
         {
             //If there is online connection, send signal to the RestAPI
-            if (_netWork.IsOnline())
-            {
-                await _serviceGateway.Delete(id);
-            }
+            //if (_netWork.IsOnline())
+            //{
+            //    await _serviceGateway.Delete(id);
+            //}
             _connection.Delete<Journal>(id);
             return await Task.FromResult(Read(id) != null);
         }

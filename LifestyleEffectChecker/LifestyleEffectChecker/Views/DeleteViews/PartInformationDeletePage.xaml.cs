@@ -3,11 +3,11 @@ using System.ComponentModel;
 using LifestyleEffectChecker.ViewModels.Detail;
 using Xamarin.Forms;
 
-namespace LifestyleEffectChecker.Views.DeleteViews.Action
+namespace LifestyleEffectChecker.Views.DeleteViews
 {
     public partial class PartInformationDeletePage : ContentPage
     {//TODO this class is not implemented yet.
-        private JournalDetailViewModel viewModel;
+        private PartInformationDetailViewModel viewModel;
 
         // Note - The Xamarin.Forms Previewer requires a default, parameterless constructor to render a page.
         public PartInformationDeletePage()
@@ -15,7 +15,7 @@ namespace LifestyleEffectChecker.Views.DeleteViews.Action
             InitializeComponent();
         }
 
-        public PartInformationDeletePage(JournalDetailViewModel viewModel)
+        public PartInformationDeletePage(PartInformationDetailViewModel viewModel)
         {
             InitializeComponent();
 
@@ -25,14 +25,14 @@ namespace LifestyleEffectChecker.Views.DeleteViews.Action
 
         private async void ConfirmDeletion_OnClicked(object sender, EventArgs e)
         {
-            if (DeletionConfirmationEntry.Text.Equals(viewModel.Journal.Name))
+            if (DeletionConfirmationEntry.Text.Equals(viewModel.PartInformation.Name))
             {
                 //Delete journal
-                var answeredYes = await DisplayAlert("Confirmation", "Are you sure you want to delete the journal?",
+                var answeredYes = await DisplayAlert("Confirmation", "Are you sure you want to delete this information?",
                     "Yes", "No");
                 if (answeredYes)
                 {
-                    MessagingCenter.Send(this, "DeleteJournal", viewModel.Journal);
+                    MessagingCenter.Send(this, "DeletePartInformation", viewModel.PartInformation);
                     await Navigation.PopToRootAsync();
                 }
                 //Debug.WriteLine("Answer: " + answer);
@@ -50,18 +50,18 @@ namespace LifestyleEffectChecker.Views.DeleteViews.Action
             if (viewModel == null)
             {
                 //no viewmodel.
-                MatchingNames.Text = "ERROR - no journal found to delete - CODE 1";
+                MatchingNames.Text = "ERROR - no information found to delete - CODE 1";
                 MatchingNames.TextColor = Color.Red;
                 return;
             }
-            if (viewModel.Journal == null)
+            if (viewModel.PartInformation == null)
             {
                 //No journal.
-                MatchingNames.Text = "ERROR - no journal found to delete - CODE 2";
+                MatchingNames.Text = "ERROR - no information found to delete - CODE 2";
                 MatchingNames.TextColor = Color.Red;
                 return;
             }
-            bool isMatching = DeletionConfirmationEntry.Text.Equals(viewModel.Journal.Name);
+            bool isMatching = DeletionConfirmationEntry.Text.Equals(viewModel.PartInformation.Name);
             if (isMatching)
             {
                 MatchingNames.Text = "Matching";
