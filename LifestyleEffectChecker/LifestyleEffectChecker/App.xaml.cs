@@ -52,12 +52,7 @@ namespace LifestyleEffectChecker
                     {
                         Title = "Camera",
                         Icon = Device.OnPlatform("tab_about.png",null,null)
-                    },
-                    new NavigationPage(new Camera())
-                    {
-                        Title = "Camera",
-                        Icon = Device.OnPlatform("tab_about.png",null,null)
-                    },
+                    }
                 }
             };
 

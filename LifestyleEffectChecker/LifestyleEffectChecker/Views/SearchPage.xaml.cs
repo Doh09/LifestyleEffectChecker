@@ -11,7 +11,6 @@ using System.IO;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using LifestyleEffectChecker.ViewModels.Detail;
-using LifestyleEffectChecker.Models.Action;
 
 namespace LifestyleEffectChecker.Views
 {
@@ -29,23 +28,23 @@ namespace LifestyleEffectChecker.Views
         public searchTags CurrentSeatchTag { get; set; }
         public async void OnListClicked_GoTo_JournalDetailPage(Object Obj)
         {
-            
+
 
             if (Obj.GetType() == typeof(DataHolder))
             {
                 DataHolder DH = Obj as DataHolder;
 
                 searchTags ST = CheckType(DH.Objert);
-            if (ST == searchTags.Journal)
-            {
-                Journal J = (Journal)DH.Objert;
-                await Navigation.PushAsync(new DetailViews.JournalDetailPage(new JournalDetailViewModel(J)));
-            }
-            if (ST == searchTags.PartInformation)
-            {
-                PartInformation PartJ = (PartInformation)DH.Objert;
-                await Navigation.PushAsync(new DetailViews.Action.PartInformationDetailPage(new ViewModels.Detail.Action.PartInformationDetailViewModel(PartJ)));
-            }
+                if (ST == searchTags.Journal)
+                {
+                    Journal J = (Journal)DH.Objert;
+                    await Navigation.PushAsync(new DetailViews.JournalDetailPage(new JournalDetailViewModel(J)));
+                }
+                if (ST == searchTags.PartInformation)
+                {
+                    PartInformation PartJ = (PartInformation)DH.Objert;
+                    await Navigation.PushAsync(new DetailViews.PartInformationDetailPage(new ViewModels.Detail.PartInformationDetailViewModel(PartJ)));
+                }
             }
         }
         public SearchPage()
@@ -55,7 +54,7 @@ namespace LifestyleEffectChecker.Views
             ListView_List_of_results.ItemTapped += (sender, e) => {
 
                 OnListClicked_GoTo_JournalDetailPage((Object)e.Item);
-                
+
             };
 
             CurrentSeatchTag = searchTags.All;
@@ -121,7 +120,7 @@ namespace LifestyleEffectChecker.Views
                 {
                     L.Remove("Error");
                 }
-                
+
                 ListView_ListOfTypes.ItemsSource = null;
                 ListView_ListOfTypes.ItemsSource = L;
                 Refresh();
@@ -166,7 +165,7 @@ namespace LifestyleEffectChecker.Views
                         }
                         if (DH.Type == searchTags.PartInformation)
                         {
-                            Models.Action.PartInformation J = (Models.Action.PartInformation)O;
+                            Models.PartInformation J = (Models.PartInformation)O;
                             DH.Name = J.Name;
                         }
                         DHs.Add(DH);
@@ -185,7 +184,7 @@ namespace LifestyleEffectChecker.Views
                 // Console.WriteLine("not a jounal");
             }
             #region
-            if (O.GetType() == typeof(Models.Action.PartInformation))
+            if (O.GetType() == typeof(Models.PartInformation))
             {
                 return searchTags.PartInformation;
             }
@@ -206,16 +205,16 @@ namespace LifestyleEffectChecker.Views
                 { LO.Add(journal); }
             }
             #endregion
-                        foreach (var partInformations in journal.JournalChildren)
-                        {
-                            #region
-                            if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.PartInformation)
-                            {
-                                if (StringTjekkerReturn(partInformations.Name,Key) || StringTjekkerReturn(partInformations.ToolTip, Key) || Key == "" + partInformations.TimeStamp || "" + partInformations.ID == Key || Key == "")
-                                { LO.Add(partInformations); }
-                            }
-                            #endregion
-                        }
+            foreach (var partInformations in journal.JournalChildren)
+            {
+                #region
+                if (CurrentSeatchTag == searchTags.All || CurrentSeatchTag == searchTags.PartInformation)
+                {
+                    if (StringTjekkerReturn(partInformations.Name, Key) || StringTjekkerReturn(partInformations.ToolTip, Key) || Key == "" + partInformations.TimeStamp || "" + partInformations.ID == Key || Key == "")
+                    { LO.Add(partInformations); }
+                }
+                #endregion
+            }
             return LO;
         }
         // says if sting is incluede in string
@@ -223,10 +222,10 @@ namespace LifestyleEffectChecker.Views
         {
             if (_Text != null && _Word != null)
             {
-            bool i = false;
-            if (_Text.ToLower().Contains(_Word.ToLower()))
-            { i = true; }
-            return i;
+                bool i = false;
+                if (_Text.ToLower().Contains(_Word.ToLower()))
+                { i = true; }
+                return i;
             }
             return false;
         }
