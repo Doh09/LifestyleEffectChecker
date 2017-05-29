@@ -19,8 +19,6 @@ namespace LifestyleEffectChecker
         public Camera()
         {
             InitializeComponent();
-         //   TakePicture.Clicked += (sender, args) => { TakePicture(); };
-         //   NextPicture.Clicked += (sender, args) => { NextPicture(); };
             _cameraHandler = DependencyService.Get<ICameraHandler>();
 
         }

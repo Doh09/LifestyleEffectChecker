@@ -29,7 +29,7 @@ namespace LifestyleEffectChecker.Droid
             _file = new File(_dir, String.Format("myPhoto_{0}.jpg", Guid.NewGuid()));
             intent.PutExtra(MediaStore.ExtraOutput, Android.Net.Uri.FromFile(_file));
             StartActivityForResult(intent, 0);
-            Toast.MakeText(this, "Build-in camera app started!", ToastLength.Long).Show();
+            Toast.MakeText(this, "it is working", ToastLength.Long).Show();
         }
     }
 
@@ -55,7 +55,7 @@ namespace LifestyleEffectChecker.Droid
     protected override void OnActivityResult(int requestCode, Result resultCode, Intent data)
     {
         base.OnActivityResult(requestCode, resultCode, data);
-        Toast.MakeText(this, "Build-in camera returned a picture: " + _file.AbsolutePath, ToastLength.Long).Show();
+        Toast.MakeText(this, "Build-in camera returned: " + _file.AbsolutePath, ToastLength.Long).Show();
         CameraHandlerAndroid.HereIsThePic(_file.AbsolutePath);
         Finish();
     }
